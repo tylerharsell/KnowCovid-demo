@@ -1,0 +1,21 @@
+<div th:fragment="menu">
+	<div class="col-md-3 recommender-left-menu" ng-controller="menuController">
+
+		<ul class="nav rec-nav flex-column">
+			
+					
+			<li class="nav-item"  ng-repeat="rec in recList">
+				<a class="nav-link " id="rec_menu_{{rec.recId}}" href="#!/renderInputPage/{{rec.recId}}" >{{rec.appName}}</a> 
+                    	
+			</li>
+			<!-- <li class="nav-item ng-scope" ng-repeat="rec in recList">
+				<a class="nav-link  ng-binding" id="rec_menu_36" href="#!/renderInputPage/36">Topic Model Recommender</a> 
+                    	
+			</li> -->
+		</ul>
+
+
+
+	</div>
+
+</div>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymleaf.org">
+
+<th:block th:include="fragments/header :: header"></th:block>
+
+<body  ng-app="mainApp">
+
+<div id="cover" style="display: none;"></div>
+	<!-- Page content -->
+	<div class="page-content">
+
+
+		<!-- Main content -->
+		<div class="content-wrapper">
+			<th:block th:include="fragments/page_header:: page_header"></th:block>
+
+			<section class="bg-light" style="background: #fff !important;padding: 65px 0 !important;">
+				<div class="container">
+
+					<!-- <div class="row">
+						<div class="col-12">
+							<a style="color: black; background: transparent; border: none;"
+								class="btn btn-primary btn-lg" href="#!/"
+								role="button">
+								<h3 class="section-heading">OnTimeRecommend Research</h3>
+							</a>
+							<hr class="hr-line" />
+						</div>
+					</div> -->
+
+					<div class="row">
+						<!-- <th:block th:include="fragments/menu:: menu"></th:block>
+						 -->
+						<div class="col-md-12 ">
+							<div class="content" ng-view="">
+							</div>
+								
+							</div>
+
+						</div>
+						</div>
+						 
+			</section>
+
+
+
+		</div>
+		<!-- /dashboard content -->
+
+	</div>
+	<!-- /content area -->
+
+		<!-- <div ng-controller="chatbot-controller"> -->
+		 <th:block th:include="fragments/chatbot :: chatbot"></th:block>
+	   <!-- </div> -->
+	   
+	<th:block th:include="fragments/footer :: footer"></th:block>
+
+</body>
+</html>

@@ -1,0 +1,48 @@
+<p>Here is the tools and datasets we found relevant to your topic</p>
+
+
+<div class="w3-panel w3-card" ng-repeat="topic in recOutput">
+	<h4>Topic Summary : {{topic.summary}}</h4>
+	<p>Suggested Tools</p>
+	<table class="table table-striped table-bordered" >
+		<thead>
+			<tr><th>#</th>
+			<th>Tool Name	</th>
+			<th>Description </th>
+			<th>Link </th></tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="tool in topic.tools">
+				<td>{{$index + 1}}</td>
+				<td>{{tool.name}}</td>
+				<td>{{tool.desc}}</td>
+				<td><a href="{{tool.link}}" target="_blank">{{tool.link}}</a> </td>
+			</tr>
+		</tbody>
+	</table>
+	
+	
+	<p>Suggested Datasets</p>
+	<table class="table table-striped table-bordered" >
+		<thead>
+			<tr><th>#</th>
+			<th>Dataset Name	</th>
+			<th>Description </th>
+			<th>Link </th></tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="dataset in topic.datasets">
+				<td>{{$index + 1}}</td>
+				<td>{{dataset.name}}</td>
+				<td>{{dataset.desc}}</td>
+				<td><a href="{{dataset.link}}" target="_blank">{{dataset.link}}</a> </td>
+			</tr>
+		</tbody>
+	</table>
+	
+	<!-- <span style="position: absolute;left: 200px;">Tool Trends</span>
+	<span style="position: absolute;left: 600px;">Dataset Trends</span>
+	<img alt="" src="img/topi-0-tool.png" style="width: 400px;margin: 10px 0 0 0;">
+	<img alt="" src="img/topi-0-dataset.png" style="width: 400px;margin: 10px 0 0 0;"> -->
+
+</div>

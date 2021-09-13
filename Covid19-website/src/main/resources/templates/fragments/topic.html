@@ -1,0 +1,76 @@
+<div th:fragment="topic" class="w3-panel w3-card" ng-controller="topic-model-recommender" >
+
+	<div class="row">
+		    <div class="col-12">
+		        <a style="color: black;background: transparent;border: none;padding: 15px 0;"  role="button">
+		            <h4 class="section-heading" style="line-height: 35px;">KnowCOVID-19 Research</h4>
+		        </a>
+		        <hr class="hr-line" style="margin: 0px -16px 20px -16px;"/>
+		</div>
+	</div>
+	
+  	<p >You can filter results topic filter and evidence pyramid level filter. To do that select topics and levels of evidence pyramid and click on "Filter Information" button.</p>
+
+	<div class="row">
+		 <div class="col-4">
+		 	<h6>Topics</h6>
+		 	<p>List of topics generated for covid-19</p>	
+		 	<ol style="    padding: 0px 0px 0 15px;text-align: justify;">
+		 		<li ng-repeat="topic in topicssummary"  style="padding: 15px 0;"> 
+		 			<input type="radio" ng-value="{{$index}}"
+		 		 	ng-model="model.topicSelected" name="topics" style="position: relative;top: 2px;left: 6px;"/>&nbsp;<span>{{topic}}</span>
+		 	
+			     </li>
+		 	</ol>
+		 
+		 </div>
+	 
+		<div class="col-8">
+		 
+			<h6>Levels of Evidence Pyramid </h6>
+			<p>The levels of evidence pyramid provides a way to visualize both the quality of evidence and the amount of evidence available. For example, systematic reviews are at the top of the pyramid, meaning they are both the highest level of evidence and the least common. As you go down the pyramid, the amount of evidence will increase as the quality of the evidence decreases.
+			</p>			
+			<ul class="evidence-level">
+				<li class="level-1" ><input type="radio" name="levels" value="true" ng-value="1" ng-model="model.levelSelected" style="position: relative;top: 3px;"/>&nbsp;<a href="#" style="color:white;">Systematic<br/>reviews</a></li>
+				<li class="level-2" ><input type="radio" name="levels" value="true" ng-value="2" ng-model="model.levelSelected" style="position: relative;top: 3px;"/>&nbsp;<a href="#" style="color:white;">Critically-Appraised<br/>Topics</a></li>
+				<li class="level-3" ><input type="radio" name="levels" value="true" ng-value="3" ng-model="model.levelSelected" style="position: relative;top: 3px;"/>&nbsp;<a href="#" style="color:white;">Critically-Appraised<br/>Individual Articles</a></li>
+				<li class="level-4" ><input type="radio" name="levels" value="true" ng-value="4" ng-model="model.levelSelected" style="position: relative;top: 3px;"/>&nbsp;<a href="#" style="color:white;">Randomized Controlled<br/>Trials</a></li>
+				<li class="level-5" ><input type="radio" name="levels" value="true" ng-value="5" ng-model="model.levelSelected" style="position: relative;top: 3px;"/>&nbsp;<a href="#" style="color:white;">Cohort <br/>Studies</a></li>
+				<li class="level-6" ><input type="radio" name="levels" value="true" ng-value="6" ng-model="model.levelSelected" style="position: relative;top: 3px;"/>&nbsp;<a href="#" style="color:white;">Case-controlled Studies,<br/>Case Series & Case Reports</a></li>
+				<li class="level-7" ><input type="radio" name="levels" value="true" ng-value="7" ng-model="model.levelSelected" style="position: relative;top: 3px;"/>&nbsp;<a href="#" style="color:white;">Background Information,<br/>Expert Opinion</a></li>
+			</ul>
+						
+			<br/>
+			<div class="form-group" style="text-align: center;">
+		  		<button class="btn btn-primary "  id="objectName" ng-click="filterDocuments(model.topicSelected,model.levelSelected);">Filter Information</button>
+		  	</div>
+		  	
+		  	<br/>
+			<div class="w3-panel" ng-if="showOutput == true" >
+				<h6 style="float: left;width: 80%;">Publications</h6>	
+					
+		 		<div style="width: 60%;">	
+					<canvas  id="base" class="chart-horizontal-bar" 
+					  chart-data="dataFinal[model.topicSelected]" chart-labels="labelFinal[model.topicSelected]"  chart-colors="['#803690','#46BFBD']">
+					</canvas> 
+			    </div>
+				
+				<ol class="resultsPublications" >
+					<li ng-repeat="publication in publications">	
+						<a style="color: #0369bd;font-weight: 600;" target="_blank" href="{{publication.url}}">{{publication.title}}</a>
+						<br/>
+						<span class="publication"><i>{{publication.title}}</i></span>
+						<span class="year">-<b> {{publication.month}}/{{publication.year}}</b></span>
+						<!-- <span class="pyramid-level level-1">Systematic reviews</span> -->
+					</li>
+					
+				</ol>
+		
+			</div>
+		
+		</div>
+		
+	</div>
+
+
+</div>

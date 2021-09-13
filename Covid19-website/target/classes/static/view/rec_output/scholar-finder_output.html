@@ -1,0 +1,43 @@
+
+<div class="row" ng-controller="scholar-finder-controller" >
+	
+	
+	<h4 style="display: inline-block;">Scholar Profiles for {{recInputParam['topicName']}}</h4>
+
+	<div class="col-md-12 class_secondSection" id="secondSection" >
+
+			<div class="col-md-12" >
+				<div  class="col-md-4" ng-repeat="scolar in recOutput | limitTo : 3" >
+					{{$index +1}}  <!--&nbsp;&nbsp;&nbsp; @{{scolar.name}} -->
+					<a style="cursor: pointer;"  >{{scolar.name}}</a> 
+					
+					
+					
+				</div>
+			</div>
+			<div class="col-md-12" >
+				<div  class="col-md-4" style="background: #fff;margin: 0px;padding: 0px;">
+					<canvas   id="base" class="chart-horizontal-bar"
+					  chart-data="data1" chart-labels="labels1"  chart-colors="['#803690']">
+					</canvas> 
+				</div>
+			
+				<div  class="col-md-4" style="background: #fff;margin: 0 28px;padding: 0px;" >	
+					<canvas  id="base" class="chart-horizontal-bar" 
+					  chart-data="data2" chart-labels="labels2"  chart-colors="['#803690','#46BFBD']">
+					</canvas> 
+				</div>
+				<div  class="col-md-4" style="background: #fff;margin: 0px;padding: 0px;">	
+					<canvas  id="base" class="chart-horizontal-bar" 
+					  chart-data="data3" chart-labels="labels3"  chart-colors="['#803690','#46BFBD']">
+					</canvas> 
+				</div>
+			</div>
+			<div id="myDiv" style="float:left ;width: 800px;height: 600px;" ><!-- Plotly chart will be drawn inside this DIV --></div>
+</div>
+
+
+
+</div>
+
+
