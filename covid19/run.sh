@@ -1,1 +1,0 @@
-python /Users/chengxiyao/Lab_researches/git_code/covid19/hello.py
