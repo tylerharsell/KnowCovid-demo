@@ -1,0 +1,12 @@
+<div class="w3-panel w3-card" ng-repeat="article in recOutput">
+	<h3 style="color: #4C4CFF;" id="titleID">
+		<a href="https://www.ncbi.nlm.nih.gov/pubmed/{{article.pmid}}" target="blank_">{{article.title}}</a>
+	</h3>
+	<h5>Author(s):</h5>
+	<p id="authorID0"><span ng-repeat="author in article.authors">{{author}},&nbsp;</span></p>
+	<h5>Abstract:</h5>
+	<p id="abstractID">	
+		{{article.abstractDtls}}
+	</p>
+	<p id="PMID">PMID: {{article.pmid}}</p>
+</div>
