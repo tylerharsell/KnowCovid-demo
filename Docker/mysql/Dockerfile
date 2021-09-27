@@ -1,4 +1,4 @@
-From mysql:8.0.26
+From mysql/mysql-server:latest
 ARG DEBIAN_FRONTEND=noninteractive
 ENV MYSQL_ROOT_PASSWORD=root
 ENV MYSQL_USER=covid19-user
