@@ -1,4 +1,6 @@
 From mysql:latest
+MAINTAINER Songjie Wang "wangso@missouri.edu"
+
 ARG DEBIAN_FRONTEND=noninteractive
 ENV MYSQL_ROOT_PASSWORD=root
 ENV MYSQL_USER=covid19-user

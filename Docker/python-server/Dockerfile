@@ -1,4 +1,6 @@
 From python:3.8
+MAINTAINER Songjie Wang "wangso@missouri.edu"
+
 ARG DEBIAN_FRONTEND=noninteractive
 RUN apt-get -y update && apt-get -y install net-tools nano wget curl 
 WORKDIR /root
