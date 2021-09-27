@@ -1,0 +1,46 @@
+version: "3.0"
+
+Services: 
+
+    mysql: 
+        build: ./mysql
+        image: mysql:latest
+        container_name: mysql
+        privileged: true
+        restart: always
+        expose:
+          - "3306"
+          - "33060"
+        networks:
+            localNet:
+                ipv4_address: 172.18.0.2
+    python-server: 
+        build: ./pythonServices
+        image: python-server:latest
+        container_name: python-server
+        privileged: true
+        restart: always
+        expose:
+          - "5000"
+        networks:
+            localNet:
+                ipv4_address: 172.18.0.3
+
+    knowCovid-server:
+        build: ./covid-app
+        image: knowCovid-server:latest
+        container_name: knowCovid-server
+        privileged: true
+        restart: always
+        ports:
+          - 9300:9300
+        networks:
+            localNet:
+                ipv4_address: 172.18.0.4            
+
+networks:
+    localNet:
+        ipam:
+            config:
+                - subnet: 172.18.0.0/24
+
