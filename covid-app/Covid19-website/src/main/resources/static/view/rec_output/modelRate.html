@@ -1,0 +1,147 @@
+<!-- <head>
+<fieldset class="starability-basic">
+						<input type="radio" id="rate1" name="rating" value="1" /> <label
+							for="rate1">1 star.</label> <input type="radio" id="rate2"
+							name="rating" value="2" /> <label for="rate2">2 stars.</label> <input
+							type="radio" id="rate3" name="rating" value="3" /> <label
+							for="rate3">3 stars.</label> <input type="radio" id="rate4"
+							name="rating" value="4" /> <label for="rate4">4 stars.</label> <input
+							type="radio" id="rate5" name="rating" value="5" /> <label
+							for="rate5">5 stars.</label>
+					</fieldset>
+<style>
+.app-modal-window .modal-dialog {
+  width: 1000px;
+}
+</style>
+</head> -->
+
+
+
+<div class="modal-header">
+	<h4 class="modal-title">
+		<b>CDC Updates Guidance to Detect Novel Coronavirus Infections</b>
+	</h4>
+</div>
+<div class="modal-body">
+
+	<form>
+		<table>
+			<tr>
+				<td><h4>Background Information based Queries</h4></td>
+			</tr>
+			<tr>
+				<td><select style="width: 600px;">
+						<option>What is the current background information
+							related to therapies for COVID-19?</option>
+						<option>What are some of the main symptoms when
+							diagnosing the coronavirus for COVID-19?</option>
+						<option>How much does it cost to treat a patient with
+							coronavirus?</option>
+						<option>What happens when being diagnosed for COVID-19?</option>
+						<option>How many people are being infected with
+							coronavirus everyday?</option>
+				</select></td>
+
+				<td></br>
+					<fieldset class="starability-basic">
+						 <input type="radio" id="no-rate" class="input-no-rate"
+							name="rating" value="0" checked aria-label="No rating." />  <input
+							type="radio" id="rate1" name="rating" value="1" /> <label
+							for="rate1">1 star.</label> <input type="radio" id="rate2"
+							name="rating" value="2" /> <label for="rate2">2 stars.</label> <input
+							type="radio" id="rate3" name="rating" value="3" /> <label
+							for="rate3">3 stars.</label> <input type="radio" id="rate4"
+							name="rating" value="4" /> <label for="rate4">4 stars.</label> <input
+							type="radio" id="rate5" name="rating" value="5" /> <label
+							for="rate5">5 stars.</label>
+					</fieldset></td>
+			</tr>
+		</table>
+	</form>
+
+	<form>
+		<table>
+			<tr>
+				<td><h4>Study and Trial based Queries</h4></td>
+			</tr>
+			<tr>
+				<td><select style="width: 600px;"><option>Are
+							there current case control studies occurring to find therapies
+							forCOVID-19</option>
+						<option>Are there currentcohort studies occurring to find
+							therapies forCOVID-19?</option>
+						<option>Are there current casecontrol studies occurring
+							to find the etiology of the coronavirus?</option>
+						<option>Are there current cohort studies occurring to
+							find the etiology of the coronavirus?</option>
+						<option>What is the current status of finding drugs to
+							alleviate the symptoms through Randomized Control Studies?</option>
+						<option>What are the current case control studies
+							happening to prevent the coronavirus?</option>
+						<option>Have any results of Cohort Studies provento be
+							successful to prevent the coronavirus from spreading?</option>
+						<option>Through randomized control studies, has there
+							been quality improvement in creating drugs </br>or other therapies to
+							fight the coronavirus?
+						</option>
+				</select></td>
+				<td></br>
+					<fieldset class="starability-basic">
+						 <input type="radio" id="no-rate1" class="input-no-rate"
+							name="rating1" value="0" checked aria-label="No rating." />
+							<input type="radio" id="rate11"  name="rating1" value="1" />
+							 <label for="rate11">1 star.</label> 
+							<input type="radio" id="rate21"  name="rating1" value="2" /> 
+							<label for="rate21">2 stars.</label> 
+							<input type="radio" id="rate31"  name="rating1" value="3" /> 
+								<label for="rate31">3 stars.</label> 
+								<input type="radio" id="rate41"  name="rating1" value="4" /> 
+								<label for="rate41">4 stars.</label> 
+								<input type="radio" id="rate51"  name="rating1" value="5" /> 
+								<label for="rate51">5 stars.</label>
+					</fieldset></td>
+			</tr>
+		</table>
+	</form>
+	<form>
+		<table>
+			<tr>
+				<td><h4>Queries directed to Professionals</h4></td>
+			</tr>
+			<tr>
+				<td><select style="width: 600px;"><option>
+							What are some current Critically Appraised Articles on the
+							etiology of the coronavirus?</option>
+						<option>What is the current situation with the etiology
+							of the coronavirus?</option>
+						<option>What are some professional views on diagnosing
+							COVID-19?</option>
+						<option>What are some professional views on the future of
+							the disease?</option>
+						<option>What can I do to prevent me from getting
+							COVID-19?</option>
+						<option>Which demographic is being affected by the
+							coronavirus the most?</option>
+				</select></td>
+				<td></br>
+					<fieldset class="starability-basic">
+						<input type="radio" id="no-rate2" class="input-no-rate"
+							name="rating2" value="0" checked aria-label="No rating." /> <input
+							type="radio" id="rate12" name="rating2" value="1" /> <label
+							for="rate12">1 star.</label> <input type="radio" id="rate22"
+							name="rating2" value="2" /> <label for="rate22">2
+							stars.</label> <input type="radio" id="rate32" name="rating2" value="3" />
+						<label for="rate32">3 stars.</label> <input type="radio"
+							id="rate42" name="rating2" value="4" /> <label for="rate42">4
+							stars.</label> <input type="radio" id="rate52" name="rating2" value="5" />
+						<label for="rate52">5 stars.</label>
+					</fieldset></td>
+			</tr>
+		</table>
+	</form> 
+</div>
+<div class="modal-footer">
+	<button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
+	<button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+</div>

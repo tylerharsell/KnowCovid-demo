@@ -1,0 +1,320 @@
+<head>
+
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script data-require="angular-touch@1.6.*" data-semver="1.6.2"
+	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.2/angular-touch.js"></script>
+<script data-require="ui-bootstrap@*" data-semver="2.5.0"
+	src="https://cdn.rawgit.com/angular-ui/bootstrap/gh-pages/ui-bootstrap-tpls-2.5.0.js"></script>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></link>
+
+</head>
+
+<div class="w3-panel w3-card" ng-controller="topic-model-recommender">
+
+	<div class="row">
+		<div class="col-12">
+			<a
+				style="color: black; background: transparent; border: none; padding: 15px 0;"
+				role="button">
+				<div class='search'>
+					<h4 class="section-heading" style="line-height: 35px;">KnowCOVID-19
+					Research
+					</h4>
+				</div>
+			</a>
+			<hr class="hr-line" style="margin: 0px -16px 20px -16px;" />
+		</div>
+	</div>
+
+	<div class="col-12">
+		<h4>
+			<b>Levels of Evidence Pyramid</b>
+		</h4>
+		<p>The levels of evidence pyramid provides a way to visualize both
+			the quality of evidence and the amount of evidence available. For
+			example, systematic reviews are at the top of the pyramid, meaning
+			they are both the highest level of evidence and the least common. As
+			you go down the pyramid, the amount of evidence will increase as the
+			quality of the evidence decreases.</p>
+
+
+
+		<ul class="evidence-level">
+
+			<li class="level-1"
+				data-title-pyramid="A document that is written by a panel of people that provides acomprehensive review of all relevant studies on a specific clinical or health-related topic orquestion. It is a complete summary of a topic or question based on published and unpublishedstudies"><input
+				type="radio" name="levels" value="true" ng-value="1"
+				ng-model="model.levelSelected" style="position: relative; top: 3px;" />
+				&nbsp;<a href="#" style="color: white;">Systematic<br />reviews
+			</a></li>
+			<li class="level-2"
+				data-title-pyramid="A brief summary and assessment over known facts about aspecific scientific literature topic, usually about an intervention or a practical issue. Createdusing systematic methodologies to search and find critically appraised studies or articles.
+
+			">
+				<input type="radio" name="levels" value="true" ng-value="2"
+				ng-model="model.levelSelected" style="position: relative; top: 3px;" />&nbsp;<a
+				href="#" style="color: white;">Critically-Appraised<br />Topics
+			</a>
+			</li>
+			<li class="level-3"
+				data-title-pyramid="Articles that have been selected and reviewed byclinicians and physicians based on their accuracy and relevancy to a specific topic."><input
+				type="radio" name="levels" value="true" ng-value="3"
+				ng-model="model.levelSelected" style="position: relative; top: 3px;" />&nbsp;<a
+				href="#" style="color: white;">Critically-Appraised<br />Individual
+					Articles
+			</a></li>
+			<li class="level-4"
+				data-title-pyramid="A study designed to determine the outcome based on a specificvariable that is studied, it consists of two groups of samples, experimental and controlled. Theparticipants are randomly assigned to a group for the study."><input
+				type="radio" name="levels" value="true" ng-value="4"
+				ng-model="model.levelSelected" style="position: relative; top: 3px;" />&nbsp;<a
+				href="#" style="color: white;">Randomized Controlled<br />Trials
+			</a></li>
+			<li class="level-5"
+				data-title-pyramid="A study designed with one or more samples, of whom are observed and followedby researchers based on a specific disease or illness outcome to determine the risk factorsassociated with said disease or outcome."><input
+				type="radio" name="levels" value="true" ng-value="5"
+				ng-model="model.levelSelected" style="position: relative; top: 3px;" />&nbsp;<a
+				href="#" style="color: white;">Cohort <br />Studies
+			</a></li>
+			<li class="level-6"
+				data-title-pyramid="A study that compares patients who have a certain disease and who do not,for the purpose of observing the risk factors and the disease itself amongst the patients."><input
+				type="radio" name="levels" value="true" ng-value="6"
+				ng-model="model.levelSelected" style="position: relative; top: 3px;" />&nbsp;<a
+				href="#" style="color: white;">Case-controlled Studies,<br />Case
+					Series & Case Reports
+			</a></li>
+			<li class="level-7"
+				data-title-pyramid="An article describing a specific situation of a patient.Usually told in a narrative voice of the doctor treating the patient, hence usually has the format ofa detailed story."><input
+				type="radio" name="levels" value="true" ng-value="7"
+				ng-model="model.levelSelected" style="position: relative; top: 3px;" />&nbsp;<a
+				href="#" style="color: white;">Background Information,<br />Expert
+					Opinion
+			</a></li>
+		</ul>
+		<p>You can filter results evidence pyramid level and topic level
+			filter. To do that select levels of evidence pyramid and topics and
+			click on "Filter Information" button.</p>
+
+		<div class="text-center">
+			<button class="button" ng-click="showListTopics();">Topic
+				Model Filtering</button>
+			<!--  <button class="button" ng-click="showListCategory();">Category
+				Model Filtering</button>
+			<button class="button">Social Plane Filtering</button> -->
+			</br> </br>
+		</div>
+		<div class="col-12" ng-if="showListTopic == true">
+			<div>
+				<h6>Topics</h6>
+				<p>List of topics generated for covid-19</p>
+				<ul>
+					<li style="padding: 15px 0;"><select
+						ng-model="model.topicSelected" id="topics">
+							<option ng-repeat="topic in topicssummary" value="{{$index}}">{{topic}}</option>
+					</select></li>
+				</ul>
+
+
+
+				<div class="form-group" style="text-align: center;">
+					<button class="btn btn-primary " id="objectName"
+						ng-click="filterDocuments(model.topicSelected,model.levelSelected);">Filter
+						Information</button>
+
+					<div class="col-12" align="left" ng-if="showOutput == true">
+						<div>
+							<h6>Chart Filter</h6>
+							<ul>
+								<li style="padding: 15px 0;"><select
+									ng-model="model.chartSelected"
+									ng-change="showChart(model.chartSelected);">
+										<option value="0">Bar Chart</option>
+										<option value="1">Pie Chart</option>
+								</select></li>
+							</ul>
+
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+		<div class="col-12" ng-show="isCategoryVisible">
+			<div>
+				<h4>
+					<b>Categories</b>
+				</h4>
+				<p>List of Categories generated for covid-19</p>
+				<button class="btn btn-info" ng-click="showTherapyCategory();">Therapy</button>
+				<button class="btn btn-info" ng-click="showEtiologyCategory();">Etiology</button>
+				<button class="btn btn-info" ng-click="showDiagnosisCategory();">Diagnosis</button>
+				<button class="btn btn-info" ng-click="showPrognosisCategory();">Prognosis</button>
+				<button class="btn btn-info" ng-click="showPreventionCategory();">Prevention</button>
+				<button class="btn btn-info" ng-click="showMeaningCategory();">Meaning</button>
+			
+
+				
+
+			</div>
+		</div>
+		</br>
+		
+		<div ng-show="isMeaningVisible">
+
+			<li style="padding: 15px 0;"><select>
+					<option>Children, Lower, Adults, Evaluate, Without, Illness,
+						Medline, Identity</option>
+			</select></li>
+			<div class="form-group" style="text-align: center;">
+				<button class="btn btn-primary " id="objectName">Filter
+					Information</button>
+			</div>
+		</div>
+		
+		<div ng-show="isPrognosisVisible">
+
+			<li style="padding: 15px 0;"><select>
+					<option>Hospitalized, Underlying, Prevalence, Diseases, Chronic, Respectively,
+						People, Affected</option>
+			</select></li>
+			<div class="form-group" style="text-align: center;">
+				<button class="btn btn-primary " id="objectName">Filter
+					Information</button>
+			</div>
+		</div>
+
+
+		<div ng-show="isTherapyVisible">
+
+			<li style="padding: 15px 0;"><select>
+					<option>Viral, Recieved, Clearance, Events, Times,
+						Entered, Effect, Different,</option>
+
+			</select></li>
+			<div class="form-group" style="text-align: center;">
+				<button class="btn btn-primary " id="objectName">Filter
+					Information</button>
+			</div>
+		</div>
+
+
+		<div ng-show="isEtiologyVisible">
+
+			<li style="padding: 15px 0;"><select>
+					<option>Association, Diseases, December, Outbreak,
+						Children, Medical, Current, Smokers</option>
+			</select></li>
+			<div class="form-group" style="text-align: center;">
+				<button class="btn btn-primary " id="objectName">Filter
+					Information</button>
+			</div>
+		</div>
+
+		<div ng-show="isDiagnosisVisible">
+
+			<li style="padding: 15px 0;"><select>
+					<option>Needed, Summary, Conducted, Public, Organization,
+						Quality, Countries, Safety</option>
+			</select></li>
+			<div class="form-group" style="text-align: center;">
+				<button class="btn btn-primary " id="objectName">Filter
+					Information</button>
+			</div>
+		</div>
+
+		<div ng-show="isPreventionVisible">
+
+			<li style="padding: 15px 0;"><select>
+					<option>Masks, Distance, Person, Prolongation, Settings,
+						Short, Inform, Physical</option>
+			</select></li>
+			<div class="form-group" style="text-align: center;">
+				<button class="btn btn-primary " id="objectName">Filter
+					Information</button>
+			</div>
+		</div>
+
+		<div class="col-11" ng-if="showOutput == true">
+
+			<div class="w3-panel" ng-show="isPieVisible">
+				<h3 style="float: left; width: 80%;">Publications</h3>
+
+				<div>
+					<canvas id="q-graph" width="800" height="600" class="chart-pie"
+						chart-data="dataFinal[model.topicSelected]"
+						chart-labels="labelFinal[model.topicSelected]" 
+						chart-colors="['#803690','#46BFBD']"
+						chart-dataset-override="PieDataSetOverride"
+						chart-options="optionsPie">	 
+					</canvas>
+				</div>
+			</div>
+
+			<div class="w3-panel " ng-show="isBarVisible">
+				<h3 style="float: left; width: 80%;">
+					<b>Publications</b>
+				</h3>
+
+				<div>
+					<canvas id="q-graph" class="chart-horizontal-bar"
+						chart-data="dataFinal[model.topicSelected]"
+						chart-labels="labelFinal[model.topicSelected]"
+						chart-colors="['#803690','#46BFBD']" chart-options="options">	 
+					</canvas>
+				</div>
+			</div>
+
+
+			<table ng-table="publicationsTable" class="table table-striped"
+				style="border: 1px solid black;">
+				<tr style="font-size: 18px; font: arial">
+					<td><b>Rating</b></td>
+					<td><b>Title</b></td>
+					<td><b>Evidence Level</b></td>
+					<td><b>Journal Venue</b></td>
+					<td><b>Date</b></td>
+				</tr>
+
+				<tr ng-repeat="publication in data">
+					<td>
+						<button value="{{$index}}" class="btn btn-info"
+							ng-click="openModal();">Rate</button>
+					</td>
+
+					<td><a style="color: #0369bd; font-weight: 600;"
+						target="_blank" href="{{publication.url}}">{{publication.title}}</a></td>
+
+					<td>{{publication.level}}</td>
+
+					<td>{{publication.journal}}</td>
+
+					<td>{{publication.month}}/{{publication.year}}</td>
+
+
+				</tr>
+
+			</table>
+
+		</div>
+
+
+		<div>
+			<script type="text/ng-template" id="nodes_renderer.html">
+      <div ui-tree-handle class="tree-node tree-node-content">
+        <a class="btn btn-success btn-xs" ng-if="node.nodes && node.nodes.length > 0" data-nodrag ng-click="toggle(this)"><span
+        class="glyphicon" ng-class="{'glyphicon-chevron-right': collapsed, 'glyphicon-chevron-down': !collapsed
+        }"></span></a> 
+		{{node.title}}
+      </div>
+      <ol ui-tree-nodes="" ng-model="node.nodes" ng-class="{hidden: collapsed}">
+        <li ng-repeat="node in node.nodes" ui-tree-node ng-include="'nodes_renderer.html'">
+        </li>
+      </ol>
+    </script>
+		</div>
+	</div>
+
+
+</div>

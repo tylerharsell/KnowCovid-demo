@@ -1,0 +1,23 @@
+<div class=" recommender" ng-controller="list-rec-controller">
+
+
+		<h4 class="section-heading" >Available Recommender System</h4>
+		<hr class="hr-line">
+		<div class="row recommender-list" >
+			<div class="col-md-12" ng-repeat="rec in recList">
+				<div class="card">
+					<div class="card-header">
+						<div class="header-recommender">	{{rec.appName}}
+						</div>
+					</div>
+					<div class="card-body">{{rec.appDes}}</div>
+				</div>
+			</div>
+			
+			
+		</div>
+
+		<br />
+
+	</div>
+

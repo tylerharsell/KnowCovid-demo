@@ -1,0 +1,18 @@
+<div th:fragment="search_menu">
+	<div class="col-md-12 recommender-left-menu" ng-controller="menuController">
+
+		<ul class="ul" >
+			
+			<li class="li" ng-class="menu['/topic_recommender']">
+				<a class="nav-link" ng-click="loadMenu('/topic_recommender')" href="javascript:void(0);">Topic Filter</a>	
+			</li>
+			
+			<li class="li" ng-class="menu['/search']">
+				<a class="nav-link" ng-click="loadMenu('/search')" href="javascript:void(0);">Search</a>	
+			</li>
+			
+		</ul>
+
+	</div>
+
+</div>

@@ -1,0 +1,73 @@
+<div class="w3-panel w3-card" ng-controller="reports-controller">
+	<div>
+		<section ng-controller="menuController" class="reports-section-center">
+			<h1 style="text-transform:none; text-align: center;">Search Reports</h1>
+			<p>We have some ranked search reports about genes and drugs for you. You can download them if you are interested. Keep in mind that you can 
+			<a ng-click="loadMenu('/filter_page')" href="javascript:void(0);" style="color: orange">Search</a> the publications by yourself. 
+			</p>
+		</section>
+		<section>
+			<div class="reports-section">
+				<h1 style="text-transform:none; text-align: left; font-size: 25px;">Genes</h1>
+				<p>Ranked genes that are mentioned in COVID-19 publications.</p>
+			
+			<table style="padding-left:80px; padding-right:100px" cellspacing="10">
+				<thead>
+					<tr>
+						<td>Genes</td>
+						<td style="font-size:10px;color:grey">first 10 out of </td>
+						<td>Publications</td>
+					</tr>
+					<tr>
+						<td *ngFor="let key of orderNum">{{key}}</td>
+						<td *ngFor="let id of keys_genes; let i=index">{{geneNumMap[key][i]}}</td>
+						<td *ngFor="let id of keys">{{id}}</td>
+					</tr>
+				</thead>
+				<tbody></tbody>
+			</table>
+			</div>
+			<br/>
+			<br/>
+			<div class="reports-section">
+				<h1 style="text-transform:none; text-align: left; font-size: 25px;">Drugs</h1>
+				<p>Ranked drugs that are mentioned in COVID-19 publications.</p>
+			
+			<table style="padding-left:80px; padding-right:100px" cellspacing="10">
+				<thead>
+					<tr>
+						<td>Drugs</td>
+						<td style="font-size:10px;color:grey">first 10 out of </td>
+						<td>Publications</td>
+					</tr>
+					<tr>
+						<td *ngFor="let key of orderNum">{{key}}</td>
+						<td *ngFor="let id of keys_drugs; let i=index">{{drugNumMap[key][i]}}</td>
+						<td *ngFor="let id of keys">{{id}}</td>
+					</tr>
+				</thead>
+				<tbody></tbody>
+			</table>
+			</div>
+			<br/>
+			<br/>
+			<div ng-controller="reports-charts-controller" class="reports-section">
+				<h1 style="text-transform:none; text-align: left; font-size: 25px;">Topics</h1>
+				<p>The first bar chart shows the topics numbers ranking in our publication dataset. The second one shows the topics which are popular among the users.</p>
+				<canvas id="barChart" height="400" width="600" style="margin:50px"> 你的浏览器不支持HTML5 canvas </canvas>
+			</div>
+		</section>
+	</div>
+</div>
+<style>
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+</style>
