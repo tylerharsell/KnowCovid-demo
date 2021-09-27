@@ -6,4 +6,4 @@ ENV MYSQL_PASSWORD=covid19-pass
 ENV MYSQL_DATABASE=covid19
 RUN apt-get -y update && apt-get -y install net-tools && apt-get install nano
 COPY covid19.sql /docker-entrypoint-initdb.d
-
+EXPOSE 5000
