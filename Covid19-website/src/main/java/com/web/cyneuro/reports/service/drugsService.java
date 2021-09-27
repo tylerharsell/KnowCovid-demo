@@ -14,7 +14,7 @@ public class drugsService {
 	@Autowired
 	drugsRepository drugsRep;
  
-	public List<drugs> FindAll() {
+	public List<drugs> findAll() {
 		return drugsRep.findAll();
 	}
 

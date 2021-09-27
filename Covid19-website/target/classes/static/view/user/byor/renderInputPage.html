@@ -1,0 +1,50 @@
+
+<div ng-controller="renderInput-controller">
+	<div class="row">
+	    <div class="col-12">
+	        <a style="color: black;background: transparent;border: none;padding: 15px 0;"  role="button">
+	            <h4 class="section-heading">{{rec.appName}}</h4>
+	        </a>
+	        <hr class="hr-line" />
+	    </div>
+	</div>
+
+	<div>
+		{{rec.appDes}}
+	</div>	
+	<div class="alert alert-primary" role="alert" >
+		Enter below details for <b>{{rec.appName}}</b>.<br/>
+		
+	</div>  
+	  
+	    
+	       
+	 <div class="form-group" ng-repeat="recInput in recInputs" >
+	     
+	     <data ng-bind-html="recInput.label"></data>
+	     
+	     <data ng-if="recInput.type == 'text'">
+	     
+	     	<input type="text" ng-model="recInputParam[recInput.name]"  ng-model-options="{ updateOn: 'change' }"  placeholder="{{recInput.placeholder}}" class="{{recInput.className}}" id="{{recInput.name}}">
+	     </data>
+	     
+	      <data ng-if="recInput.type == 'select'">
+	      	<select ng-model="recInputParam[recInput.name]" ng-model-options="{ updateOn: 'change' }"  class="form-control" id="{{recInput.name}}">
+	      		<option ng-repeat="option in recInput.values" value="{{option.value}}" >{{option.label}}</option>
+	      	</select>
+	     </data>
+	     
+	 </div>
+	 
+	  <div class="form-group">
+	  	<button class="btn btn-primary "  id="objectName" ng-click="runRecommenderDetails();">Run Model</button>
+	  </div>
+	  	  	<input type="hidden" id="recOutput">
+	  
+	 
+
+	  <div class="output-rec" ng-if="showOutput == 'true'">
+	  
+	  	<div ng-include="'view/rec_output/'+ rec.outputTemplate"></data>
+	  </div>
+</div>

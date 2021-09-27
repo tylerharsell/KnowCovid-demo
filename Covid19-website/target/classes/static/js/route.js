@@ -63,6 +63,6 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		})
 		.state("filter_page.topic_recommender", {
 			url:"/topic_recommender",
-			templateUrl: "view/rec_output/Topic-Model-Filter_output.html"
+			templateUrl: "view/rec_output/Topic-Model_output_new.html"
 		})
 });

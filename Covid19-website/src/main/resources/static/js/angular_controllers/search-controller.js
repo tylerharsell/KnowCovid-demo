@@ -8,7 +8,7 @@ app.controller('publication-recommender',function($scope,$location, mainService,
 		$scope.input = document.getElementById("searchContent").value;
 		console.log($scope.input)
 		
-		mainService.callPostRestAPI("publications/search", $scope.input).then(function (data) {
+		mainService.callPostRestAPI("publications/search_python", $scope.input).then(function (data) {
 			console.log(data);
 			$scope.publications = data;
 			if(data != null){

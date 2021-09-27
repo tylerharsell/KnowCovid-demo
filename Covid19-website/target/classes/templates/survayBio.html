@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymleaf.org">
+
+<th:block th:include="fragments/header :: header"></th:block>
+
+<body  ng-app="mainApp">
+
+    <input type="hidden" id="userId" name="userId" th:value='${id}' />
+
+	<!-- Page content -->
+	<div class="page-content">
+
+
+		<!-- Main content -->
+		<div class="content-wrapper">
+			<th:block th:include="fragments/page_header:: page_header"></th:block>
+
+			<section class="bg-light" ng-controller="survay-controller">
+			<!-- {{rec}} -->
+				<div class="container">
+					 <div class="form-group">
+					    <label for="name">Does your research involve computations and workflow execution?</label>
+					    <br/><input type="radio" ng-model="rec.basic.q1"  value="0" /> Not at all
+					    <br/><input type="radio" ng-model="rec.basic.q2" value="2" /> Slightly
+					    <br/><input type="radio" ng-model="rec.basic.q3" value="4" /> Moderately
+					    <br/><input type="radio" ng-model="rec.basic.q4" value="8" /> Extremely
+					  </div>
+					 
+					<div class="form-group">
+						<label>Where do you perform your computations or simulations?</label>
+					    <br/><input type="radio" ng-model="rec.basic.q2" value="0" /> Nope, I don’t usually perform any simulation or computations
+						<br/><input type="radio" ng-model="rec.basic.q2" value="2" /> On my local machine
+						<br/><input type="radio" ng-model="rec.basic.q2" value="4" /> On my university research resources
+						<br/><input type="radio" ng-model="rec.basic.q2" value="8" /> On Science Gateways
+					</div>
+  
+					<div class="form-group">
+						<label>Rate your proficiency in installing the required software for your research simulations on your local machine?</label>
+						<br/><input type="radio" ng-model="rec.hpc.q1" value="0" /> Little to None
+						<br/><input type="radio" ng-model="rec.hpc.q1" value="2" /> Below Average
+						<br/><input type="radio" ng-model="rec.hpc.q1" value="4" /> Above Average
+						<br/><input type="radio" ng-model="rec.hpc.q1" value="8" /> Mastery
+					</div>
+					
+					<div class="form-group">
+						<label>Rate your familiarity with national High-Performance Computing (HPC) resources like TACC (Texas Advanced Computing Center), XSEDE (Extreme Science and Engineering Discovery Environment)?</label>
+						<br/><input type="radio" ng-model="rec.hpc.q2" value="0" /> Little to None
+						<br/><input type="radio" ng-model="rec.hpc.q2" value="2" /> Below Average
+						<br/><input type="radio" ng-model="rec.hpc.q2" value="4" /> Above Average
+						<br/><input type="radio" ng-model="rec.hpc.q2" value="8" /> Mastery
+					</div>
+					
+					<div class="form-group">
+						<label>Rate your familiarity with Science Gateways like NSG, CyVerse etc.?</label>
+						<br/><input type="radio" ng-model="rec.hpc.q3" value="0" /> Little to None
+						<br/><input type="radio" ng-model="rec.hpc.q3" value="2" /> Below Average
+						<br/><input type="radio" ng-model="rec.hpc.q3" value="4" /> Above Average
+						<br/><input type="radio" ng-model="rec.hpc.q3" value="8" /> Mastery
+					</div>
+					
+					<div class="form-group">
+						<label>Rate your proficiency in using Linux Operating System like (Ubuntu, Fedora, Redhat)?</label>
+						<br/><input type="radio" ng-model="rec.hpc.q4" value="0" /> Little to None
+						<br/><input type="radio" ng-model="rec.hpc.q4" value="2" /> Below Average
+						<br/><input type="radio" ng-model="rec.hpc.q4" value="4" /> Above Average
+						<br/><input type="radio" ng-model="rec.hpc.q4" value="8" /> Mastery
+					</div>
+					
+					<div class="form-group">
+						<label>Rate your proficiency in using remote Linux/Unix machine?</label>
+						<br/><input type="radio" ng-model="rec.hpc.q5" value="0" /> Little to None - I have never worked with remote Linux/Unix machines
+						<br/><input type="radio" ng-model="rec.hpc.q5" value="2" /> Below Average - I can login and run basic commands
+						<br/><input type="radio" ng-model="rec.hpc.q5" value="4" /> Above Average - I can login, transfer data to and from the remote machine
+						<br/><input type="radio" ng-model="rec.hpc.q5" value="8" /> Mastery - I can do anything on a remote machine
+					</div>
+					
+					<div class="form-group">
+						<label>Does your bioinformatics research focus in genome data analysis such as RNAseq analytics?</label>
+						<br/><input type="radio" ng-model="rec.bio.q1" value="0" /> Note at all
+						<br/><input type="radio" ng-model="rec.bio.q1" value="2" /> Slightly
+						<br/><input type="radio" ng-model="rec.bio.q1" value="4" /> Moderately
+						<br/><input type="radio" ng-model="rec.bio.q1" value="8" /> Extremly
+					</div>
+					
+					<div class="form-group">
+						<label>Rate your familiarity with the concept of conducting transcriptomics RNAseq or single cell RNAseq (scRNAseq) analysis</label>
+						<br/><input type="radio" ng-model="rec.bio.q2" value="0" /> Little to None
+						<br/><input type="radio" ng-model="rec.bio.q2" value="2" /> Below Average
+						<br/><input type="radio" ng-model="rec.bio.q2" value="4" /> Above Average
+						<br/><input type="radio" ng-model="rec.bio.q2" value="8" /> Mastery
+					</div>
+					
+					<div class="form-group">
+						<label>Rate your understanding of gene expression analysis for various experimental conditions</label>
+						<br/><input type="radio" ng-model="rec.bio.q3" value="0" /> Little to None
+						<br/><input type="radio" ng-model="rec.bio.q3" value="2" /> Below Average
+						<br/><input type="radio" ng-model="rec.bio.q3" value="4" /> Above Average
+						<br/><input type="radio" ng-model="rec.bio.q3" value="8" /> Mastery
+					</div>
+					
+					<div class="form-group">
+						<label>Rate your proficiency in using NGS(Next Generation Sequencing) experimental datasets</label>
+						<br/><input type="radio" ng-model="rec.bio.q4" value="0" /> Little to None
+						<br/><input type="radio" ng-model="rec.bio.q4" value="2" /> Below Average
+						<br/><input type="radio" ng-model="rec.bio.q4" value="4" /> Above Average
+						<br/><input type="radio" ng-model="rec.bio.q4" value="8" /> Mastery
+					</div>
+					
+					<div class="form-group">
+						<label>Rate your proficiency in any other tools such as Tophat2, HISAT, Seurat, etc.</label>
+						<br/><input type="radio" ng-model="rec.bio.q5" value="0" /> Little to None
+						<br/><input type="radio" ng-model="rec.bio.q5" value="2" /> Below Average
+						<br/><input type="radio" ng-model="rec.bio.q5" value="4" /> Above Average
+						<br/><input type="radio" ng-model="rec.bio.q5" value="8" /> Mastery
+					</div>
+					
+					
+					<!--  <div class="form-group">
+						<label>Rate your proficiency in using NEURON software?</label>
+						<br/><input type="radio" ng-model="rec.bio.q5" value="0" /> Little to None
+						<br/><input type="radio" ng-model="rec.bio.q5" value="2" /> Below Average
+						<br/><input type="radio" ng-model="rec.bio.q5" value="4" /> Above Average
+						<br/><input type="radio" ng-model="rec.bio.q5" value="8" /> Mastery
+					</div>
+				
+					<div class="form-group">
+						<label>Rate your proficiency at programming in Python</label>
+						<br/><input type="radio" ng-model="rec.bio.q7" value="0" /> Little to None
+						<br/><input type="radio" ng-model="rec.bio.q7" value="2" /> Below Average
+						<br/><input type="radio" ng-model="rec.bio.q7" value="4" /> Above Average
+						<br/><input type="radio" ng-model="rec.bio.q7" value="8" /> Mastery
+					</div>  -->
+					
+					
+						<div class="form-group">
+							  	<button class="btn btn-primary "  id="objectName" ng-click="submitSurvay();">Submit</button>
+							
+						</div>	
+				</div>
+				
+				
+						 
+			</section>
+
+
+
+		</div>
+		<!-- /dashboard content -->
+
+	</div>
+	<!-- /content area -->
+
+		<!-- <div ng-controller="chatbot-controller"> -->
+		 <th:block th:include="fragments/chatbot :: chatbot"></th:block>
+	   <!-- </div> -->
+	   
+	<th:block th:include="fragments/footer :: footer"></th:block>
+
+<style>
+.form-group{
+	margin: 10px 0;
+}
+.form-group input{
+	
+}
+.form-group label{
+	font-weight: bold;
+}
+</style>
+
+</body>
+</html>

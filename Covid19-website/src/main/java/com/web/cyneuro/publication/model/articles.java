@@ -6,6 +6,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+
+
 import javax.persistence.Column;
 import lombok.Data;
 
@@ -15,12 +18,15 @@ public class articles {
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-    private int level; 
-    private String title; 
-    private String year; 
-    private String month;
-    private String url;
+    private String title;
+    private String abstracts;
+    private String publish_time;
+    private String authors;
     private String journal;
+    private String url;
+    private String clinical_category;
+    private int level; 
+    
     
     public Long getId() {
 		return id;
@@ -38,6 +44,7 @@ public class articles {
 		this.level = level;
 	}
 	
+	
 	public String getTitle() {
 		return title;
 	}
@@ -46,20 +53,20 @@ public class articles {
 		this.title = title;
 	}
 	
-	public String getYear() {
-		return year;
+	public String getAbstracts() {
+		return abstracts;
 	}
 
-	public void setYear(String year) {
-		this.year = year;
+	public void setAbstracts(String abstracts) {
+		this.abstracts = abstracts;
 	}
 	
-	public String getMonth() {
-		return month;
+	public String getPublish_time() {
+		return publish_time;
 	}
 
-	public void setMonth(String month) {
-		this.month = month;
+	public void setPublish_time(String publish_time) {
+		this.publish_time = publish_time;
 	}
 	
 	public String getUrl() {
@@ -76,5 +83,21 @@ public class articles {
 
 	public void setJournal(String journal) {
 		this.journal = journal;
+	}
+	
+	public String getAuthors() {
+		return authors;
+	}
+
+	public void setAuthor(String authors) {
+		this.authors = authors;
+	}
+	
+	public String getClinical_category() {
+		return clinical_category;
+	}
+
+	public void setClinical_category(String clinical_category) {
+		this.clinical_category = clinical_category;
 	}
 }

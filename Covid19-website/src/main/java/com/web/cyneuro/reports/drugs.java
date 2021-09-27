@@ -14,9 +14,8 @@ public class drugs {
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-    private String drugs; 
-    private String description; 
-    
+    private String name; 
+
     public Long getId() {
 		return id;
 	}
@@ -25,20 +24,12 @@ public class drugs {
 		this.id = id;
 	}
     
-	public String getDrugs() {
-		return drugs;
+	public String getName() {
+		return name;
 	}
 
-	public void setDrugs(String drugs) {
-		this.drugs = drugs;
-	}
-	
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
+	public void setName(String name) {
+		this.name = name;
 	}
 	
 	

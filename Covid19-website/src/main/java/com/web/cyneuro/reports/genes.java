@@ -14,8 +14,7 @@ public class genes {
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-    private String genes; 
-    private String description; 
+    private String name; 
     
     
     public Long getId() {
@@ -26,21 +25,14 @@ public class genes {
 		this.id = id;
 	}
     
-	public String getGenes() {
-		return genes;
+	public String getName() {
+		return name;
 	}
 
-	public void setGenes(String genes) {
-		this.genes = genes;
+	public void setName(String name) {
+		this.name = name;
 	}
 	
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
 	
 	
 }

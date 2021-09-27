@@ -22,65 +22,59 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import com.web.cyneuro.reports.reports;
+import com.web.cyneuro.publication.model.articles;
 import com.web.cyneuro.reports.genes;
 import com.web.cyneuro.reports.drugs;
-import com.web.cyneuro.reports.repository.reportsRepository;
+import com.web.cyneuro.publication.repo.ArticlesRepository;
 import com.web.cyneuro.reports.repository.genesRepository;
 import com.web.cyneuro.reports.repository.drugsRepository;
-import com.web.cyneuro.reports.service.reportsService;
+import com.web.cyneuro.publication.services.publicationService;
 import com.web.cyneuro.reports.service.genesService;
 import com.web.cyneuro.reports.service.drugsService;
 
 @Controller
 @RequestMapping("/reports")
 @ComponentScan(basePackages = {"com.web.cyneuro"})
-public class reportsController {
+public class reportsController{
 
+	
 	@Autowired
-	reportsRepository reportsRepository;
-	genesRepository genesRepository;
-	drugsRepository drugsRepository;
-	
-	
-	@GetMapping("/")
-	public String index() {
-		return "index";
-	}
-	
+	publicationService publicationService;
+	@Autowired
+	genesService genesService;
+	@Autowired
+	drugsService drugsService;	
  
 	/**
 	 * 
-	 * Get reports results about genes, and return it.
+	 * Get articles results about genes, and return it.
 	 * 
 	 * @param request
-	 * @param reports
+	 * @param articles
 	 * @return
 	 */
 	@RequestMapping("/doAnalysisGenes")
-	public Map<String, List<reports>> genesAnalysis(HttpServletRequest request, reports reports, genes genes) {
+	public Map<String, List<articles>> genesAnalysis(HttpServletRequest request, articles articles, genes genes) {
 //		String title = request.getParameter("title");
 //		String abstracts = request.getParameter("abstracts");
 //		String full_paper = request.getParameter("full_paper");
 //		String genes_name = request.getParameter("genes");
 		
-		Map<String, List<reports>> paperDict = new HashMap<String, List<reports>>();
+		Map<String, List<articles>> paperDict = new HashMap<String, List<articles>>();
 		
-		List<genes> genes_list = genesRepository.findAll();
+		List<genes> genes_list = genesService.findAll();
 		
 		if(genes_list.size()>0) {
 			for (genes gene : genes_list) {
-				String gene_name = gene.getGenes();
-				List<reports> all_gene_paper_list = new ArrayList<reports>();
-				List<reports> gene_paper_list_title = reportsRepository.findByTitleContaining(gene_name);
-				List<reports> gene_paper_list_abstract = reportsRepository.findByAbstractsContaining(gene_name);
-				List<reports> gene_paper_list_full = reportsRepository.findByFullPaperContaining(gene_name);
+				String gene_name = gene.getName();
+				List<articles> all_gene_paper_list = new ArrayList<articles>();
+				List<articles> gene_paper_list_title = publicationService.findByTitleContaining(gene_name);
+				List<articles> gene_paper_list_abstract = publicationService.findByAbstractsContaining(gene_name);
 				
 				all_gene_paper_list.addAll(gene_paper_list_title);
 				all_gene_paper_list.removeAll(gene_paper_list_abstract);
 				all_gene_paper_list.addAll(gene_paper_list_abstract);
-				all_gene_paper_list.removeAll(gene_paper_list_full);
-				all_gene_paper_list.addAll(gene_paper_list_full);
+
 				
 				if(!paperDict.containsKey(gene_name)) {
 					paperDict.put(gene_name, all_gene_paper_list);
@@ -92,38 +86,35 @@ public class reportsController {
 			}
 		}
 		
-		
+		System.out.print(paperDict.size());
 		return paperDict;
 	}
 	/**
 	 * 
-	 * Get reports results about drugs, and return it.
+	 * Get articles results about drugs, and return it.
 	 * 
 	 * @param request
-	 * @param reports
+	 * @param articles
 	 * @return
 	 */
 	@RequestMapping("/doAnalysisDrugs")
-	public Map<String, List<reports>> drugsAnalysis(HttpServletRequest request, reports reports, drugs drugs) {
+	public Map<String, List<articles>> drugsAnalysis(HttpServletRequest request, articles articles, drugs drugs) {
 		
-		Map<String, List<reports>> paperDict = new HashMap<String, List<reports>>();
+		Map<String, List<articles>> paperDict = new HashMap<String, List<articles>>();
 		
-		List<drugs> drugs_list = drugsRepository.findAll();
+		List<drugs> drugs_list = drugsService.findAll();
 		
 		if(drugs_list.size()>0) {
 			for (drugs drug : drugs_list) {
-				String drug_name = drug.getDrugs();
-				List<reports> all_gene_paper_list = new ArrayList<reports>();
-				List<reports> gene_paper_list_title = reportsRepository.findByTitleContaining(drug_name);
-				List<reports> gene_paper_list_abstract = reportsRepository.findByAbstractsContaining(drug_name);
-				List<reports> gene_paper_list_full = reportsRepository.findByFullPaperContaining(drug_name);
+				String drug_name = drug.getName();
+				List<articles> all_gene_paper_list = new ArrayList<articles>();
+				List<articles> gene_paper_list_title = publicationService.findByTitleContaining(drug_name);
+				List<articles> gene_paper_list_abstract = publicationService.findByAbstractsContaining(drug_name);
 				
 				all_gene_paper_list.addAll(gene_paper_list_title);
 				all_gene_paper_list.removeAll(gene_paper_list_abstract);
 				all_gene_paper_list.addAll(gene_paper_list_abstract);
-				all_gene_paper_list.removeAll(gene_paper_list_full);
-				all_gene_paper_list.addAll(gene_paper_list_full);
-				
+
 				if(!paperDict.containsKey(drug_name)) {
 					paperDict.put(drug_name, all_gene_paper_list);
 				}else {
@@ -133,7 +124,8 @@ public class reportsController {
 				}
 			}
 		}
-				
+		
+		System.out.print(paperDict.size());	
 		return paperDict;
 	}
 

@@ -84,7 +84,7 @@ app.controller('menuController', function($scope, $location, $rootScope, mainSer
 		
 		if(menu_name == '/'){
 			$rootScope.menu_name = 'Home';
-		}else if (menu_name.includes('search')){
+		}else if (menu_name.includes('filter_page')){
 			const queryString = window.location.search;
 			const urlParams = new URLSearchParams(queryString);
 			const username = urlParams.get('username')

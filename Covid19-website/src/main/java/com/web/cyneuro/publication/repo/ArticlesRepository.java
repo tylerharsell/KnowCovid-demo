@@ -1,6 +1,7 @@
 package com.web.cyneuro.publication.repo;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -12,11 +13,12 @@ import com.web.cyneuro.publication.model.articles;
 public interface ArticlesRepository extends JpaRepository<articles, Long> {
 
 	List<articles> findByTitleContaining(String title);
+		
+	Optional<articles> findById(Long id);
 	
-	List<articles> findByJournalContaining(String journal);
+	List<articles> findAll();
 	
-	List<articles> findByYear(String year);
+	List<articles> findByAbstractsContaining(String genes);
 	
-	List<articles> findByMonth(String month);
 	
 }

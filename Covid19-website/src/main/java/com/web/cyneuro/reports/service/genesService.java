@@ -14,7 +14,7 @@ public class genesService {
 	@Autowired
 	genesRepository genesRep;
  
-	public List<genes> FindAll() {
+	public List<genes> findAll() {
 		return genesRep.findAll();
 	}
 	
