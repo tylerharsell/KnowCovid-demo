@@ -25,7 +25,7 @@ public class articles {
     private String journal;
     private String url;
     private String clinical_category;
-    private int level; 
+    private Integer level; 
     
     
     public Long getId() {
@@ -36,11 +36,11 @@ public class articles {
 		this.id = id;
 	}
 	
-	public int getLevel() {
+	public Integer getLevel() {
 		return level;
 	}
 
-	public void setLevel(int level) {
+	public void setLevel(Integer level) {
 		this.level = level;
 	}
 	

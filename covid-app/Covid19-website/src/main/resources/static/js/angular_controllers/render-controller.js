@@ -199,8 +199,9 @@ app.controller('topic-model-recommender', function($scope,$location,$route,$uibM
 		input['topicSelected']= $scope.model.topicSelected;
 		input['levelSelected']= levelSelected;
 		input = angular.toJson(input);
-		
+
 		mainService.callPostRestAPI("executeScriptFilterDocs/", input).then(function (data) {
+			console.log("Showing list of docs:");
 			console.log(data);
 			$scope.publications = data;
 			

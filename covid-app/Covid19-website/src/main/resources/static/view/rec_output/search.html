@@ -21,11 +21,13 @@
 	  
 	  <div ng-if="showResult == true">	
 			<ol class="resultsPublications pagination" >
-				<li ng-repeat="publication in publications">	
+				<li ng-repeat="publication in publications" style="display:inline-block">	
 					<a style="color: #0369bd;font-weight: 600;" target="_blank" href="{{publication.url}}">{{publication.title}}</a>
 					<br/>
-					<span class="publication"><i>{{publication.title}}</i></span>
-					<span class="year">-<b> {{publication.month}}/{{publication.year}}</b></span>
+					<span class="publication"><i>{{publication.authors}}</i></span>
+					<span class="publication"><i>{{publication.abstracts}}</i></span>
+					<span><i>{{publication.publish_time}}</i></span>
+					<span><i>{{publication.journal}}</i></span>
 				</li>	
 			</ol>		
 	  </div>

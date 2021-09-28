@@ -39,8 +39,7 @@ public class FilterController {
 	@Autowired
 	private Environment env;
 	RestTemplate restTemplate = new RestTemplate();
-    HttpHeaders headers = new HttpHeaders();
-//    headers.setContentType(MediaType.APPLICATION_JSON);
+  
 	
 	@PostMapping("/executeScriptListTopic")
 	@ResponseBody
@@ -49,7 +48,7 @@ public class FilterController {
 
 		JSONObject json=(JSONObject) parser.parse(request);
 	    	String command = env.getProperty("python.topiclist.command");
-	    	System.out.print(command);
+	    	System.out.println(command);
 	//		String result = executeScriptProcess(command);
 	    	String url = env.getProperty("python.service.url");
 	    	url += "/get_topics";
@@ -67,32 +66,34 @@ public class FilterController {
 	    return result;
     }
     
+	
 	@PostMapping("/executeScriptFilterDocs")
 	@ResponseBody
     public String executeScriptFilterDocs(@RequestBody String request) throws Exception {
-
+		
     		JSONParser parser = new JSONParser();
 		JSONObject json=(JSONObject) parser.parse(request);
 		String topicSelected = String.valueOf(json.get("topicSelected"));
 		String levelSelected = String.valueOf(json.get("levelSelected"));
 		
-    		String command = env.getProperty("python.filterdocs.command");
+//    		String command = env.getProperty("python.filterdocs.command");
     		String url = env.getProperty("python.service.url");
     		url += "/filter_documents";
-    		System.out.print(url);
+    		System.out.println("=====");
+    		System.out.println(url);
 //		String result = executeScriptProcess(command + " "+topicSelected + " " + levelSelected);
-//    		HttpHeaders headers = new HttpHeaders();
-//    		headers.setContentType(MediaType.parseMediaType(MediaType.APPLICATION_OCTET_STREAM + ";charset=UTF-8"));
-//    		HttpEntity<String> httpEntity = new HttpEntity<>(request, headers);
+
     		MultiValueMap<String, String> paramMap = new LinkedMultiValueMap<>();
     	    paramMap.add("topic_id",topicSelected);
     	    paramMap.add("level", levelSelected);
 		String result = "";
+		JSONObject result1 = null;
 		try {
-			System.out.print(paramMap);
 			result = restTemplate.postForObject(url, paramMap, String.class);
-			result = result.replace("'", "\"");
-			System.out.println(result);
+			result = result.replace("'", "\"").replace("; O\"", "");
+//			System.out.print(result.length());
+//			JSONParser parser1 = new JSONParser();  
+//			result1 = (JSONObject) parser1.parse(result);  
 		}catch (Exception e) {
 			e.printStackTrace();
 		}

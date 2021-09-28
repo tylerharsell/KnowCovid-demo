@@ -5,4 +5,5 @@ RUN apt-get -y update && apt-get -y install lsb-release && apt-get install net-t
 RUN apt-get -y install default-mysql-server maven
 WORKDIR /root 
 ADD Covid19-website /root/Covid19-website
-# COPY ./*.war /usr/local/tomcat/webapps/
+WORKDIR /root/Covid19-website
+RUN mvn clean package

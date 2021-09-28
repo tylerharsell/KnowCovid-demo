@@ -2,7 +2,7 @@ app.controller('reports-controller',function($scope,$location, mainService, $rou
 
 	$scope.getGeneDict = function(){
 	
-		mainService.callPostRestAPI("reports/doAnalysisGenes").then(function (data) {
+		mainService.callPostRestAPI("reports/doAnalysisGenes/").then(function (data) {
 			console.log(data);
 			$scope.geneDict = data;
 			
@@ -24,7 +24,7 @@ app.controller('reports-controller',function($scope,$location, mainService, $rou
 	
 	$scope.getDrugDict = function(){
 	
-		mainService.callPostRestAPI("reports/doAnalysisDrugs").then(function (data) {
+		mainService.callPostRestAPI("reports/doAnalysisDrugs/").then(function (data) {
 			console.log(data);
 			$scope.geneDict = data;
 			

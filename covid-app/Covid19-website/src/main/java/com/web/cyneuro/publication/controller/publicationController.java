@@ -97,13 +97,16 @@ public class publicationController {
 	    String result = restTemplate.postForObject(url, paramMap, String.class);
 	    System.out.println(result);
 	    
-	    result = result.replace("[", "".replace("]", ""));
+	    result = result.replace("[", "").replace("]", "");
 	    String[] id_list = result.split(", ");
 	    for(int i = 0; i<id_list.length;i++) {
 	    	Long id_ = Long.parseLong(id_list[i]);
-	    	System.out.println(id_);
 	    	Optional<articles> article = articlesRepository.findById(id_);
+	    	try {
 	    	articlesFinal.add(article.get());
+	    	}catch (Exception e){
+	    		e.printStackTrace();
+	    	}
 	    }
 		
 		System.out.println(articlesFinal);
