@@ -15,7 +15,7 @@ services:
             localNet:
                 ipv4_address: 172.18.0.2
     python-server: 
-        build: ./pythonServices
+        build: ./python-server
         image: python-server:latest
         container_name: python-server
         privileged: true
