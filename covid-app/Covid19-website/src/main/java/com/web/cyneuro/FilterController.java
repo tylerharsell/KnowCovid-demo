@@ -12,6 +12,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang3.StringUtils;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.python.core.Py;
@@ -90,8 +91,13 @@ public class FilterController {
 		JSONObject result1 = null;
 		try {
 			result = restTemplate.postForObject(url, paramMap, String.class);
-			result = result.replace("'", "\"").replace("; O\"", "");
+			result = result.replace("'", "\"");
 //			System.out.print(result.length());
+			result = jsonString(result);
+//			System.out.print(result.charAt(7490));
+//			System.out.print(result.charAt(7491));
+//			System.out.print(result.charAt(7492));
+//			System.out.print(result.charAt(7493));
 //			JSONParser parser1 = new JSONParser();  
 //			result1 = (JSONObject) parser1.parse(result);  
 		}catch (Exception e) {
@@ -133,4 +139,29 @@ public class FilterController {
 		return finalOutput;
 
 	}
+    
+    public static String jsonString(String s) {
+        char[] temp = s.toCharArray();
+        int n = temp.length;
+        for (int i = 0; i < n; i++) {
+            if (temp[i] == ':') {
+                int quentIndex = i + 1;
+                while (StringUtils.isBlank(String.valueOf(temp[quentIndex]))) {
+                    quentIndex++;
+                }
+                if (temp[quentIndex] == '"') {
+                    for (int j = quentIndex + 1; j < n; j++) {
+                        if (temp[j] == '"') {
+                            if (temp[j + 1] != ',' && temp[j + 1] != '}') {
+                                temp[j] = '”';
+                            } else if (temp[j + 1] == ',' || temp[j + 1] == '}') {
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return new String(temp);
+    }
 }

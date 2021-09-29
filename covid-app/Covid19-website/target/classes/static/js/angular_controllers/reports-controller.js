@@ -10,14 +10,17 @@ app.controller('reports-controller',function($scope,$location, mainService, $rou
 			
 			for(key in data){
 				var len = data[key].length;
-				if(geneNumMap.has(len)){
+				if(geneNumMap.hasOwnProperty(len)){
 					geneNumMap[len].push(key);
 				}else{
 					geneNumMap[len] = [key];
 				}
 			}
-			
-			var keys_genes = Object.keys(geneNumMap).sort();
+			console.log(geneNumMap);
+			var keys_genes = sortObjectByKeys(geneNumMap);
+			console.log(keys_genes)
+			var keys_genes_new = keys_genes.slice(0,10)
+			console.log(keys_genes_new)
 		});
 		
 	}
@@ -32,16 +35,25 @@ app.controller('reports-controller',function($scope,$location, mainService, $rou
 			
 			for(key in data){
 				var len = data[key].length;
-				if(drugNumMap.has(len)){
+				if(drugNumMap.hasOwnProperty(len)){
 					drugNumMap[len].push(key);
 				}else{
 					drugNumMap[len] = [key];
 				}
 			}
 			
-			var keys_drugs = Object.keys(drugNumMap).sort();
+			var keys_drugs = sortObjectByKeys(drugNumMap);
+			console.log(keys_drugs)
+			var keys_drugs_new = [];
+			for (var i=0; i<10; i++)
+			    keys_drugs_new[i] = keys_drugs[i];
+			console.log(keys_drugs_new)
 		});
 		
+	}
+	
+	function sortObjectByKeys(o) {
+	    return Object.keys(o).sort().reduce((r, k) => (r[k] = o[k], r), {});
 	}
 	
 	$scope.getGeneDict();

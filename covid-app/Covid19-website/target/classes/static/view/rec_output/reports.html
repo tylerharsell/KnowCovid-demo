@@ -20,7 +20,7 @@
 					</tr>
 					<tr>
 						<td *ngFor="let key of orderNum">{{key}}</td>
-						<td *ngFor="let id of keys_genes; let i=index">{{geneNumMap[key][i]}}</td>
+						<td *ngFor="let id of keys_genes_new; let i=index">{{geneNumMap[key][i]}}</td>
 						<td *ngFor="let id of keys">{{id}}</td>
 					</tr>
 				</thead>
@@ -40,10 +40,10 @@
 						<td style="font-size:10px;color:grey">first 10 out of </td>
 						<td>Publications</td>
 					</tr>
-					<tr>
-						<td *ngFor="let key of orderNum">{{key}}</td>
-						<td *ngFor="let id of keys_drugs; let i=index">{{drugNumMap[key][i]}}</td>
-						<td *ngFor="let id of keys">{{id}}</td>
+					<tr *ngfor="let key of orderNum; let id of keys_drugs_new; let i=index; let id of keys_drugs_new">
+						<td>{{key}}</td>
+						<td>{{drugNumMap[key][i]}}</td>
+						<td>{{id}}</td>
 					</tr>
 				</thead>
 				<tbody></tbody>
@@ -54,7 +54,7 @@
 			<div ng-controller="reports-charts-controller" class="reports-section">
 				<h1 style="text-transform:none; text-align: left; font-size: 25px;">Topics</h1>
 				<p>The first bar chart shows the topics numbers ranking in our publication dataset. The second one shows the topics which are popular among the users.</p>
-				<canvas id="barChart" height="400" width="600" style="margin:50px"> 你的浏览器不支持HTML5 canvas </canvas>
+				<canvas id="barChart" height="400" width="600" style="margin:50px"> Your browser doesn't support HTML5 canvas. </canvas>
 			</div>
 		</section>
 	</div>

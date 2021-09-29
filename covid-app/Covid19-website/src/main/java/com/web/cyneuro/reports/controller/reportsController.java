@@ -53,8 +53,9 @@ public class reportsController{
 	 * @param articles
 	 * @return
 	 */
-	@RequestMapping("/doAnalysisGenes")
-	public Map<String, List<articles>> genesAnalysis(HttpServletRequest request, articles articles, genes genes) {
+	@PostMapping("/doAnalysisGenes")
+	@ResponseBody
+	public Map<String, List<articles>> genesAnalysis() {
 //		String title = request.getParameter("title");
 //		String abstracts = request.getParameter("abstracts");
 //		String full_paper = request.getParameter("full_paper");
@@ -97,8 +98,9 @@ public class reportsController{
 	 * @param articles
 	 * @return
 	 */
-	@RequestMapping("/doAnalysisDrugs")
-	public Map<String, List<articles>> drugsAnalysis(HttpServletRequest request, articles articles, drugs drugs) {
+	@PostMapping("/doAnalysisDrugs")
+	@ResponseBody
+	public Map<String, List<articles>> drugsAnalysis() {
 		
 		Map<String, List<articles>> paperDict = new HashMap<String, List<articles>>();
 		
