@@ -33,7 +33,6 @@ services:
         privileged: true
         restart: always
         ports:
-          - 9300:9300
           - 8080:8080
         networks:
             localNet:
