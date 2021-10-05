@@ -1,11 +1,12 @@
 version: "3.0"
 
-services: 
+services:
 
-    mysql: 
+    mysql:
         build: ./mysql
         image: mysql:latest
         container_name: mysql
+        command: --default-authentication-plugin=mysql_native_password
         privileged: true
         restart: always
         expose:
@@ -14,7 +15,7 @@ services:
         networks:
             localNet:
                 ipv4_address: 172.18.0.2
-    python-server: 
+    python-server:
         build: ./python-server
         image: python-server:latest
         container_name: python-server
@@ -32,15 +33,15 @@ services:
         container_name: knowCovid-server
         privileged: true
         restart: always
+        command: ["bash", "-c", ". ~/.bashrc && mvn clean package &&  cp /root/Covid19-website/target/*.war /usr/local/tomcat/webapps/Covid-19.war && sleep 1000"]
         ports:
           - 8080:8080
         networks:
             localNet:
-                ipv4_address: 172.18.0.4            
+                ipv4_address: 172.18.0.4
 
 networks:
     localNet:
         ipam:
             config:
                 - subnet: 172.18.0.0/24
-
