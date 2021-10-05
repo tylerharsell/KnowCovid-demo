@@ -1,4 +1,4 @@
-FROM tomcat:8.5.54
+FROM mizzouceri/tomcat-mvn-java11:latest
 MAINTAINER Songjie Wang "wangso@missouri.edu"
 
 RUN apt-get -y update && apt-get -y install lsb-release && apt-get install net-tools nano

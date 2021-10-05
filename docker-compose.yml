@@ -28,7 +28,7 @@ services:
 
     knowCovid-server:
         build: ./covid-app
-        image: knowCovid-server:latest
+        image: knowcovid-server:latest
         container_name: knowCovid-server
         privileged: true
         restart: always
