@@ -54,9 +54,17 @@ public class publicationController {
 		search = search.toLowerCase().replaceAll("covid 19","covid-19");
 		
 		List<articles> articles1 = articlesRepository.findByTitleContaining(search);
+		List<articles> articles2 = articlesRepository.findByAbstractsContaining(search);
 		System.out.println(articles1.size());
 		if(articles1.size()>0) {
 			for(articles article: articles1 ) {
+				if(!(articlesFinal.contains(article))){
+					articlesFinal.add(article);
+				}
+			}
+		}
+		if (articles2.size()>0) {
+			for(articles article: articles2 ) {
 				if(!(articlesFinal.contains(article))){
 					articlesFinal.add(article);
 				}

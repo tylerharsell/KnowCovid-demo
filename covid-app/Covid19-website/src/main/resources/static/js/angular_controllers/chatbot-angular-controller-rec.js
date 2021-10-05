@@ -39,6 +39,8 @@ $(document).ready(function () {
 	
     var baseUrl = "https://api.dialogflow.com/v1/query?v=20170712&";
     var accessToken = "55995f86374c45d8825eda233efb94f9";
+    //var baseUrl = "POST https://dialogflow.googleapis.com/v2/projects/knowcovid19-chatbot-keusyk/agent/sessions/session-id:detectIntent
+    //var accessToken = "AIzaSyAauPBdnxH9ijvTr35gcxobyIOsI892eog";
 
     //Komal_changes
     //var accessToken = "";
@@ -187,9 +189,45 @@ $(document).ready(function () {
                 console.log(e);
             }
         });
-
-
-    }
+      }
+      
+   
+    /*const dialogflow = import('@google-cloud/dialogflow');
+	var projectId = "knowcovid19-chatbot-keusyk"; // your dialogflow project id when you click on settings of the DF agent
+	var sessionId = "123456"; // session ID
+	var config = {
+	// use credentials or keyFilename i'm using keyFile
+	     credentials: {
+	         private_key: '-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDGKwLCZOCYuj0Z\nhTkA0u08kpXAAm7Oy/WjGvkuvsEH8EqsLQv18Rb9U2ZN88GUKywVE0Ry7LQfOA9J\nufJH2I8y3SuIjvkLjTOjqOq9tqM5VJGWnzuYzD31mvh0ZOzTVjrFIJQElFgp/Yzj\nNbusve4fdjwBYgJYggDrrzviIhdPd1NS6Q4qohfyoM1N6U0U+gt8ckKrhE7Tm5L3\npRADcrGoADYjlOZ7PD0o0zE9uH3Bl1OJZRccrzVlpMlxydWwABz2cPrniGk/uP86\na0khiFFbT9JcJ6tUvmj5t2qsEYByMNZoDBR/w2QRaJM1xTAo2t8EvBuT8HwzlNy8\nEIw8O0lBAgMBAAECggEAAyMcLJKnQZO1Mum6gMpWCh7x8vO26FwvO9FJ/5Tyflst\n+3LNHSwfZoxC8tn4hw116bF/5Gfd5B6hk1O3w65oefApZ8SHqcim+CDM8orpI5e0\npFNKAL2+/1vgMguE+kWDsao13aqxiJykddZcbbwmAGaBRa5VBiyssg54nrhWcSIV\nzyMG833zD5IULCqA1ub01Za+wqYGyb1jCu218GkJXeagm6lDDA6LoRi4PtODTU7M\nmxLMC+LAh+petW7Y5Dvo9jQo2zKjRzQamvlhZj3FvG1yhNEDaN3crZN58ll28Io9\n0tCu2eL9KMYZAUT4Nkj675EGKm92JRivwwYINePdVwKBgQDzHTboscQ9EfMLW+Wx\n+8X8RR8eHrx6SjtDOiZyeNgfOTJ86FV44i5rPvaCjHs6kafHxHUpdhFhSzetGt9k\nW1QWApa0YQvd7baJXBpidyqH2+Vrrf1qdYcf+PPnn75zPclj4K9y4B9zJrnHeRhS\nboezY+O9ozFVl/M4CTvmOvDKRwKBgQDQq+2XN7/8TpHwRfzxPIneePCaxJkWWjRS\nIT3A63U+rXqRT4NbA2ENGQcpcAjMDX1SzVnA0jeSjPD3YEdDStnfsRPgSK2HiPCe\nUM9j3Ash6Dzjt0lpPqPXwupecv45AEu41nFRKrjHpSj9fUR/KTCx2N3ciBg056vL\ngmVOzJeMNwKBgBC9xUc23p2Z+9Ofa2zbOqIJnH/1e+Mr83LIsVcWrUNRLAHf+erO\nIIYwGseYpu+8kgI2rB7Dy6SYimf4PsPpahvt57TaLfgFY5mH5yU6sYoTgXPt0lKf\nb0OrYBhmLrY+3fxrv4k4l9HVK9vpodwjUmLvEQLBFyeexBfqwt4y1twHAoGATDjx\nEZKQs1Xz4wN9sJS/e59LrAzyKoMKp5Fy4Dxh2GI/6kJUJfOnCMTCo/VDkV3AEHXo\nOhHPsN2Ay6vEfCUkTpx9OSjzEhYIZpv4FW70Ng+B5mA2FZaG/LI7MALrL+EWx861\nF8P2OR7wSR/v3E8sdVpVOFASH4kcbLsVzGHZXaMCgYEA300knj0pfSG/EJ12Dz8K\nFl0xfsun9xAxiZD7ngP4YifDU1U5GIaj3yQno4L2T+/mcohRwJda4jufEimLP4S5\nlZm9aqd7II3W8hj87K8pnNWKX7S/s+D5uoMXvUHAUR82r07WLE8kuYshMsRhC0JL\nQ8GWZcfO+eS4qP8Cbs7b1t0=\n-----END PRIVATE KEY-----\n',
+	         client_email: 'knowcovid19-vidura-v2@knowcovid19-chatbot-keusyk.iam.gserviceaccount.com',
+	     }
+	        //keyFilename: './google.json'
+	};
+	
+	var sessionClient = new dialogflow.SessionsClient(config);
+	
+	async function sendTextMessageToDialogFlow(textMessage) {
+        // Define session path
+        const sessionPath = sessionClient.sessionPath(projectId, sessionId);
+        // The text query request.
+        const request = {
+            session: sessionPath,
+            queryInput: {
+                text: {
+                    text: textMessage,
+                    languageCode: 'en'
+                }
+            }
+        }
+        try {
+            let [responses] = await sessionClient.detectIntent(request)
+            console.log(responses);
+        } catch (err) {
+            console.error('DialogFlow.sendTextMessageToDialogFlow ERROR:', err);
+            throw err
+        }
+    };*/
+     
 
     // execute this when user hits enter button in the chat window input
     $("#user_input").keypress(function (e) {
@@ -208,7 +246,7 @@ $(document).ready(function () {
                 		<a href= "http://localhost:8080/OnTimeRecommend/getSurvay?id='+data['id'] +'"  style="color:red"> Click Here to take survey </a> ');
             }else{
             	sendUserText(userText, contextJSON);
-
+				//sendTextMessageToDialogFlow(text);
             }
             
 
