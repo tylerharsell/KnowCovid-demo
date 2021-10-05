@@ -1,7 +1,7 @@
 app.service('mainService', function($http, $q, $location, $window) {
 
 	//local
-    var serverURL = "http://54.196.221.152:8080/Covid-19/";
+    var serverURL = "http://54.196.221.152:9090/Covid-19/";
 
     //server
     //var serverURL = "http://35.223.93.141:8080/KnowCOVID19/";
