@@ -33,7 +33,7 @@ services:
         container_name: knowCovid-server
         privileged: true
         restart: always
-        command: ["bash", "-c", ". ~/.bashrc && mvn clean package &&  cp /root/Covid19-website/target/*.war /usr/local/tomcat/webapps/Covid-19.war && sleep 1000"]
+        command: ["bash", "-c", ". ~/.bashrc && mvn clean package &&  cp /root/Covid19-website/target/*.war /usr/local/tomcat/webapps/Covid-19.war && /usr/local/tomcat/bin/catalina.sh run"]
         ports:
           - 8080:8080
         networks:
