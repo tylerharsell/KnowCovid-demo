@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'docker build -t mysql mysql/.'
+                sh 'docker-compose up -d --build'
             }
             post {
                 success {
