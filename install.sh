@@ -1,11 +1,12 @@
 #!/bin/bash
 
-# install Docker
+# install Docker and docker compose
 sudo su
 apt-get -y update
 curl -fsSL https://get.docker.com -o get-docker.sh
 sh get-docker.sh
 usermod -aG docker $USER
+apt-get -y install docker-compose 
 
 # install Java 11
 apt-get update
@@ -37,4 +38,8 @@ source ~/.bashrc
 # install Tomcat
 cd /usr/local
 wget https://dlcdn.apache.org/tomcat/tomcat-10/v10.0.12/bin/apache-tomcat-10.0.12.tar.gz
-tar -xzvf apache-tomcat-10.0.12.tar.gz -C tomcat
+tar -xzvf apache-tomcat-10.0.12.tar.gz 
+mv apache-tomcat-10.0.12 tomcat
+
+# retrieve Jenkins password
+cat /var/lib/jenkins/secrets/initialAdminPassword
