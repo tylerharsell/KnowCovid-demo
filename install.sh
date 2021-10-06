@@ -43,3 +43,7 @@ mv apache-tomcat-10.0.12 tomcat
 
 # retrieve Jenkins password
 cat /var/lib/jenkins/secrets/initialAdminPassword
+
+# change jenkins user and give it access to Docker daemon
+usermod -aG docker $USER
+chmod 777 /var/run/docker.sock
