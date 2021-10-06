@@ -80,7 +80,7 @@ public class userController {
 		        Date date = new Date();
 		        user1.setCreatetime(date);
 				userService.save(user1);
-				ModelAndView mav =new ModelAndView("redirect:/user/dologin");
+				ModelAndView mav =new ModelAndView("redirect:/login");
 				return mav;
 			} else {
 				map.put("msg", "Email address is invalid! Please try another email.");
