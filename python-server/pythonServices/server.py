@@ -39,7 +39,7 @@ def print_topics(num_words=10):
 	topics_list = list()
 	for t in topics:
 		topics_list.append({'topic_id': int(t[0]), 'words_probs': dict(t[1])})
-	print(topics_list)
+	print(type(topics_list))
 	return str(topics_list)
 
 @app.route('/filter_documents', methods=['POST'])
@@ -47,13 +47,18 @@ def filter_doc_topic():
 	topic_id = request.form.get('topic_id', type=int,default='')
 	level = request.form.get('level', type=int,default='')
 	df = pd.read_pickle(DOCS_TOPICS_PATH)
+	print(len(df))
+	for columns in df.columns:
+		df[columns].replace("\"", "", inplace=True)
+		df[columns].replace("\'", "", inplace=True)
 	print(topic_id, level)
 
 	docs = df[(df['topic-' + str(topic_id)] > 0) & (df['level'] == level)].sort_values(
 		by='topic-' + str(topic_id), ascending=False)
 	print(len(docs))
+	print(type(docs))
 
-	return str(docs.to_json(orient='records'))
+	return docs.to_json(orient='records')
 
 @app.route('/query', methods=['POST'])
 def query_similarity():
@@ -72,6 +77,47 @@ def query_similarity():
 	res_dict = {k: v for k, v in sorted(res_dict.items(), key=lambda item: item[1], reverse=True) }
 
 	return str([i for i in res_dict.keys()][:50])
+
+@app.route('/get_gene_dict', methods=['GET'])
+def get_gene_dict():
+	r = open('gene_dict.json', 'r')
+	data = json.loads(r.read())
+	print(data)
+
+	return data
+
+@app.route('/get_gene_len_dict', methods=['GET'])
+def get_gene_len_dict():
+	r = open('gene_len_dict.json', 'r')
+	data = json.loads(r.read())
+	data_new = {}
+	i = 1
+	for key in data:
+		if i <= 10:
+			data_new[key] = data[key]
+			i += 1
+
+	return data_new
+
+@app.route('/get_drug_dict', methods=['GET'])
+def get_drug_dict():
+	r = open('drug_dict.json', 'r')
+	data = json.loads(r.read())
+
+	return data
+
+@app.route('/get_drug_len_dict', methods=['GET'])
+def get_drug_len_dict():
+	r = open('drug_len_dict.json', 'r')
+	data = json.loads(r.read())
+	data_new = {}
+	i = 1
+	for key in data:
+		if i <= 10:
+			data_new[key] = data[key]
+			i += 1
+
+	return data_new
 
 if __name__ == "__main__":
 	app.run(host="0.0.0.0", debug=True)

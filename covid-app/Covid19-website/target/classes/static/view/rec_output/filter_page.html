@@ -1,0 +1,31 @@
+<div class="w3-panel w3-card" ng-controller="menuController">
+	<div class="row">
+		
+		<div class="col-md-3 recommender-left-menu" >
+
+			<ul class="ul" >
+				
+				<li class="li" >
+					<a class="nav-link" ui-sref=".about" href="javascript:void(0);">About</a>	
+				</li>
+				
+				<li class="li" >
+					<a class="nav-link" ui-sref=".topic_recommender" href="javascript:void(0);">Topic Filter</a>	
+				</li>
+				
+				<li class="li" >
+					<a class="nav-link" ui-sref=".search" href="javascript:void(0);">Search</a>	
+				</li>
+				
+			</ul>
+
+		</div>
+		
+		<div class="col-md-9 recommender-right-menu">
+			<div ui-view="" />
+					
+		</div>
+		
+
+	</div>
+</div>

@@ -1,0 +1,86 @@
+<div class="w3-panel w3-card" ng-controller="publication-recommender">
+
+	<div class="row">
+		    <div class="col-12">
+		        <a style="color: black;background: transparent;border: none;padding: 15px 0;"  role="button">
+		            <h4 class="section-heading" style="line-height: 35px;">KnowCOVID-19 Search</h4>
+		        </a>
+		        <hr class="hr-line" style="margin: 0px -16px 20px -16px;"/>
+			</div>
+	</div>
+	
+	
+  	<p >You can input the content you want to know, then our website will provide publications about your content for you.</p>
+  	<div class="row">
+	  <div class="search">
+	      <input id="searchContent" type="text" class="searchTerm" placeholder="What are you looking for?">
+	      <button type="submit" class="searchButton" id="searchBtn" ng-click="publicationSearch()">
+	        <i class="fa fa-search"></i>
+	     </button>
+	  </div>
+	  
+	  <div ng-if="showResult == true">	
+			<ol class="resultsPublications pagination" >
+				<li ng-repeat="publication in publications" style="display:inline-block">	
+					<a style="color: #0369bd;font-weight: 600;" target="_blank" href="{{publication.url}}">{{publication.title}}</a>
+					<br/>
+					<span class="publication"><i>{{publication.authors}}</i></span>
+					<span class="publication"><i>{{publication.abstracts}}</i></span>
+					<span><i>{{publication.publish_time}}</i></span>
+					<span><i>{{publication.journal}}</i></span>
+				</li>	
+			</ol>		
+	  </div>
+	</div>
+</div>
+<style>
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+
+body{
+  background: #f2f2f2;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.search {
+  width: 80%;
+  position: relative;
+  padding-left: 60px;
+  display: flex;
+}
+
+.searchTerm {
+  width: 100%;
+  border: 3px solid #82E0AA;
+  border-right: none;
+  padding: 5px;
+  height: 40px;
+  border-radius: 10px 0 0 10px;
+  outline: none;
+  color: #82E0AA;
+}
+
+.searchTerm:focus{
+  color: #82E0AA;
+}
+
+.searchButton {
+  width: 40px;
+  height: 40px;
+  border: 1px solid #82E0AA;
+  background: #82E0AA;
+  text-align: center;
+  color: #fff;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+/*Resize the wrap to see the search bar change!*/
+.wrap{
+  width: 30%;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+</style>

@@ -124,6 +124,7 @@ public class userController {
 		if (user != null) {
 			map.put("msg", "Successfully!");
 			map.put("username", user.getUsername());
+			System.out.print(user.getUsername());
 			ModelAndView mav =new ModelAndView("redirect:/#!/introduction");
 			return mav;
 		} else {

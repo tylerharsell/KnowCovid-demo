@@ -4,11 +4,11 @@ import pandas as pd
 
 
 def print_topics(num_words=10):
-    LDA_MODEL_PATH = '/Users/chengxiyao/Lab_researches/git_code/covid19/output/topic_model/lda.model'
+    LDA_MODEL_PATH = 'lda.model'
     lda = LdaModel.load(LDA_MODEL_PATH)
 
     # print topics
-    print(topics = lda.show_topics(num_words=num_words, formatted=False))
+    topics = lda.show_topics(num_words=num_words, formatted=False)
 
     topics_list = list()
     for t in topics:

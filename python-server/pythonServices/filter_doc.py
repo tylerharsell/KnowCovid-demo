@@ -9,9 +9,10 @@ import sys
 def filter_doc_topic(topic_id, level):
     DOCS_TOPICS_PATH = 'docs.topics.pkl'
     df = pd.read_pickle(DOCS_TOPICS_PATH)
-    print(DOCS_TOPICS_PATH)
+    print(len(df))
+    print()
 
-    docs = df[(df['topic-'+str(topic_id)] > 0) & (df['level'] == level)].sort_values(
+    docs = df[(df['topic-'+str(topic_id)] > 0) & (df['level'] == str(level))].sort_values(
         by='topic-'+str(topic_id), ascending=False)
     print(len(docs))
     return docs.to_json(orient='records')
@@ -20,7 +21,8 @@ def filter_doc_topic(topic_id, level):
 if __name__ == "__main__":
     topic_id = int(sys.argv[1])
     level = int(sys.argv[2])
-    filter_doc_topic(topic_id, level)
+    result = filter_doc_topic(topic_id, level)
+    print(result)
     #print(topic_id)
     #print(level)
     # print(filter_doc_topic(topic_id, level, 20))

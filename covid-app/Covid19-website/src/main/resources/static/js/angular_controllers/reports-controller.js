@@ -1,64 +1,29 @@
 app.controller('reports-controller',function($scope,$location, mainService, $routeParams,recSystemService){
-
-	$scope.getGeneDict = function(){
 	
-		mainService.callPostRestAPI("reports/doAnalysisGenes/").then(function (data) {
+	$scope.getGeneDict = function(){
+		mainService.callPostRestAPI("reports/getGeneDict/").then(function (data) {
 			console.log(data);
 			$scope.geneDict = data;
-			
-			var geneNumMap = {};
-			
-			for(key in data){
-				var len = data[key].length;
-				if(geneNumMap.hasOwnProperty(len)){
-					geneNumMap[len].push(key);
-				}else{
-					geneNumMap[len] = [key];
-				}
-			}
-			console.log(geneNumMap);
-			var keys_genes = sortObjectByKeys(geneNumMap);
-			console.log(keys_genes)
-			var keys_genes_new = keys_genes.slice(0,10)
-			console.log(keys_genes_new)
 		});
-		
+		mainService.callPostRestAPI("reports/getGeneLenDict/").then(function (data) {
+			console.log(data);
+			$scope.geneLenDict = data;
+		});
 	}
 	
 	$scope.getDrugDict = function(){
-	
-		mainService.callPostRestAPI("reports/doAnalysisDrugs/").then(function (data) {
+		mainService.callPostRestAPI("reports/getDrugDict/").then(function (data) {
 			console.log(data);
 			$scope.geneDict = data;
-			
-			var drugNumMap = {};
-			
-			for(key in data){
-				var len = data[key].length;
-				if(drugNumMap.hasOwnProperty(len)){
-					drugNumMap[len].push(key);
-				}else{
-					drugNumMap[len] = [key];
-				}
-			}
-			
-			var keys_drugs = sortObjectByKeys(drugNumMap);
-			console.log(keys_drugs)
-			var keys_drugs_new = [];
-			for (var i=0; i<10; i++)
-			    keys_drugs_new[i] = keys_drugs[i];
-			console.log(keys_drugs_new)
 		});
-		
-	}
-	
-	function sortObjectByKeys(o) {
-	    return Object.keys(o).sort().reduce((r, k) => (r[k] = o[k], r), {});
+		mainService.callPostRestAPI("reports/getDrugLenDict/").then(function (data) {
+			console.log(data);
+			$scope.drugLenDict = data;
+		});
 	}
 	
 	$scope.getGeneDict();
 	$scope.getDrugDict();
-	$scope.orderNum = [1,2,3,4,5,6,7,8,9,10];
 });
 app.controller('reports-charts-controller',function($scope,$location, mainService, $routeParams,recSystemService){
 

@@ -121,9 +121,40 @@
 					<button class="btn btn-primary " id="objectName"
 						ng-click="filterDocuments(model.topicSelected,model.levelSelected);">Filter
 						Information</button>
-
+					<br/>
+					<br/>
 					<div class="col-12" align="left" ng-if="showOutput == true">
 						<div>
+						<table ng-table="publicationsTable" class="table table-striped"
+							style="border: 1px solid black;">
+							<tr style="font-size: 18px; font: arial">
+								<td><b>Rating</b></td>
+								<td><b>Title</b></td>
+								<td><b>Evidence Level</b></td>
+								<!-- <td><b>Journal Venue</b></td> -->
+								<td><b>Date</b></td>
+							</tr>
+			
+							<tr ng-repeat="publication in data">
+								<td>
+									<button value="{{$index}}" class="btn btn-info"
+										ng-click="openModal();">Rate</button>
+								</td>
+			
+								<td><a style="color: #0369bd; font-weight: 600;"
+									target="_blank" href="{{publication.url}}">{{publication.title}}</a></td>
+			
+								<td>{{publication.level}}</td>
+			
+								<!-- <td>{{publication.journal}}</td> -->
+			
+								<!-- <td>{{publication.month}}/{{publication.year}}</td> -->
+								<td>{{publication.date}}</td>
+			
+			
+							</tr>
+			
+						</table>
 							<h6>Chart Filter</h6>
 							<ul>
 								<li style="padding: 15px 0;"><select
@@ -234,7 +265,7 @@
 		</div>
 
 		<div class="col-11" ng-if="showOutput == true">
-
+			
 			<div class="w3-panel" ng-show="isPieVisible">
 				<h3 style="float: left; width: 80%;">Publications</h3>
 
@@ -262,37 +293,6 @@
 					</canvas>
 				</div>
 			</div>
-
-
-			<table ng-table="publicationsTable" class="table table-striped"
-				style="border: 1px solid black;">
-				<tr style="font-size: 18px; font: arial">
-					<td><b>Rating</b></td>
-					<td><b>Title</b></td>
-					<td><b>Evidence Level</b></td>
-					<td><b>Journal Venue</b></td>
-					<td><b>Date</b></td>
-				</tr>
-
-				<tr ng-repeat="publication in data">
-					<td>
-						<button value="{{$index}}" class="btn btn-info"
-							ng-click="openModal();">Rate</button>
-					</td>
-
-					<td><a style="color: #0369bd; font-weight: 600;"
-						target="_blank" href="{{publication.url}}">{{publication.title}}</a></td>
-
-					<td>{{publication.level}}</td>
-
-					<td>{{publication.journal}}</td>
-
-					<td>{{publication.month}}/{{publication.year}}</td>
-
-
-				</tr>
-
-			</table>
 
 		</div>
 

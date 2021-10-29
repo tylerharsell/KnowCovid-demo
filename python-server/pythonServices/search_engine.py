@@ -7,12 +7,12 @@ import pickle
 
 if __name__ == '__main__':
 	print('Reading data...')
-	df = pd.read_csv('metadata.csv')
+	df = pd.read_csv('metadata-3.csv')
 	print('Training...')
 	vectorizer = TfidfVectorizer()
 	corpus = []
 	document = []
-	df = df.dropna()
+	# df = df.dropna()
 	content_abstract = list(df['abstract'])
 	print(len(df))
 	i = 0

@@ -6,9 +6,11 @@ import javax.servlet.http.HttpSession;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Comparator;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,9 +19,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.core.env.Environment;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import com.web.cyneuro.publication.model.articles;
@@ -44,7 +49,83 @@ public class reportsController{
 	genesService genesService;
 	@Autowired
 	drugsService drugsService;	
- 
+	
+	@Autowired
+	private Environment env;
+	RestTemplate restTemplate = new RestTemplate();
+  
+	
+	@RequestMapping("/getGeneDict")
+	@ResponseBody
+    public Map getGeneDict() throws Exception {
+		String url = env.getProperty("python.service.url");
+		url += "/get_gene_dict";
+		System.out.println(url);
+		
+		Map result = null;
+    	try {
+    		result = restTemplate.getForObject(url, Map.class);
+//    		System.out.print(result);
+    	} catch (Exception e) {
+    		e.printStackTrace();
+    	}
+    	
+    	return result;
+		
+	}
+	
+	@RequestMapping("/getGeneLenDict")
+	@ResponseBody
+    public Map getGeneLenDict() throws Exception {
+		String url = env.getProperty("python.service.url");
+		url += "/get_gene_len_dict";
+		
+		Map result = null;
+    	try {
+    		result = restTemplate.getForObject(url, Map.class);
+    	} catch (Exception e) {
+    		e.printStackTrace();
+    	}
+    	
+    	return result;
+		
+	}
+	
+	@RequestMapping("/getDrugDict")
+	@ResponseBody
+    public Map getDrugDict() throws Exception {
+		String url = env.getProperty("python.service.url");
+		url += "/get_drug_dict";
+//		String url2 = url + "/get_gene_len_dict";
+		
+		Map result = null;
+    	try {
+    		result = restTemplate.getForObject(url, Map.class);
+    	} catch (Exception e) {
+    		e.printStackTrace();
+    	}
+    	
+    	return result;
+		
+	}
+	
+	@RequestMapping("/getDrugLenDict")
+	@ResponseBody
+    public Map getDrugLenDict() throws Exception {
+		String url = env.getProperty("python.service.url");
+		url += "/get_drug_len_dict";
+		
+		Map result = null;
+    	try {
+    		result = restTemplate.getForObject(url, Map.class);
+    	} catch (Exception e) {
+    		e.printStackTrace();
+    	}
+    	
+    	return result;
+		
+	}
+	
 	/**
 	 * 
 	 * Get articles results about genes, and return it.
@@ -88,7 +169,33 @@ public class reportsController{
 		}
 		
 		System.out.print(paperDict.size());
-		return paperDict;
+		//Get gene numbers top 10
+		Map<String, Integer> gene_top = new HashMap<String, Integer>();
+		for(var entry : paperDict.entrySet()) {
+//		    System.out.println(entry.getKey() + "/" + entry.getValue());
+			String key = entry.getKey();
+			List<articles> papers_num = entry.getValue();
+			Integer length = papers_num.size();
+			gene_top.put(key, length);
+		}
+		LinkedHashMap<String, Integer> reverseSortedMap = new LinkedHashMap<>();
+		gene_top.entrySet()
+	    .stream()
+	    .sorted(Map.Entry.comparingByValue(Comparator.reverseOrder())) 
+	    .forEachOrdered(x -> reverseSortedMap.put(x.getKey(), x.getValue()));
+		Map<String, List<articles>> dataFinal = new HashMap<String, List<articles>>();
+		int i = 1;
+		for(var entry:reverseSortedMap.entrySet()) {
+			String gene = entry.getKey();
+			List<articles> paper_list = paperDict.get(gene);
+			if (i <= 10) {
+				dataFinal.put(entry.getKey(), paper_list);
+			}else {
+				break;
+			}
+		}
+		System.out.print(dataFinal);
+		return dataFinal;
 	}
 	/**
 	 * 

@@ -137,7 +137,7 @@
 	<dependency>
 		<groupId>org.apache.httpcomponents</groupId>
 		<artifactId>httpclient</artifactId>
-		<version>4.5.13</version>
+		<version>4.5</version>
 	</dependency>
 	<dependency>
 		<groupId>com.fasterxml.jackson.core</groupId>
@@ -173,6 +173,28 @@
             <groupId>commons-codec</groupId>
             <artifactId>commons-codec</artifactId>
         </dependency>
+        <dependency>
+	      <groupId>com.google.cloud</groupId>
+	      <artifactId>libraries-bom</artifactId>
+	      <version>23.1.0</version>
+	      <type>pom</type>
+	      <scope>import</scope>
+	    </dependency>
+	    <dependency>
+		    <groupId>com.google.cloud</groupId>
+		    <artifactId>google-cloud-storage</artifactId>
+		    <version>2.1.7</version>
+		  </dependency>
+       <dependency>
+	        <groupId>com.google.cloud</groupId>
+	        <artifactId>google-cloud-dialogflow</artifactId>
+	        <version>4.1.6</version>
+	    </dependency>
+       <dependency>
+         <groupId>com.google.api-client</groupId>
+         <artifactId>google-api-client</artifactId>
+         <version>1.32.1</version>
+       </dependency>
 	</dependencies>
   	
   	<properties>
