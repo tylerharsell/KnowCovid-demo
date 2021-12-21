@@ -126,6 +126,57 @@ public class reportsController{
 		
 	}
 	
+	@RequestMapping("/getGeneAllDict")
+	@ResponseBody
+    public Map getGeneAllDict() throws Exception {
+		String url = env.getProperty("python.service.url");
+		url += "/get_gene_all_dict";
+		
+		Map result = null;
+    	try {
+    		result = restTemplate.getForObject(url, Map.class);
+    	} catch (Exception e) {
+    		e.printStackTrace();
+    	}
+    	
+    	return result;
+		
+	}
+	
+	@RequestMapping("/getDrugAllDict")
+	@ResponseBody
+    public Map getDrugAllDict() throws Exception {
+		String url = env.getProperty("python.service.url");
+		url += "/get_drug_all_dict";
+		
+		Map result = null;
+    	try {
+    		result = restTemplate.getForObject(url, Map.class);
+    	} catch (Exception e) {
+    		e.printStackTrace();
+    	}
+    	
+    	return result;
+		
+	}
+	
+	@RequestMapping("/getInfoJson")
+	@ResponseBody
+    public Map getInfoJson() throws Exception {
+		String url = env.getProperty("python.service.url");
+		url += "/get_info_json";
+		
+		Map result = null;
+    	try {
+    		result = restTemplate.getForObject(url, Map.class);
+    	} catch (Exception e) {
+    		e.printStackTrace();
+    	}
+    	
+    	return result;
+		
+	}
+	
 	/**
 	 * 
 	 * Get articles results about genes, and return it.

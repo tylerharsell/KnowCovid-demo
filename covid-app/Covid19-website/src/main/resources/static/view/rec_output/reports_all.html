@@ -1,0 +1,109 @@
+<div class="w3-panel w3-card" ng-controller="reports-controller">
+	<div class="row">
+		<div ng-controller="menuController" class="reports-section-center">
+			<h1 style="text-transform:none; text-align: center;">Data Reports</h1>
+			<p>We have some ranked data reports about genes and drugs for you.
+			</p>
+		</div>
+		<br/>
+		<!-- <ul class="nav nav-tabs mb-3" role="tablist">
+			<li role="presentation" class="nav-item active"><a data-toggle="tab" href="#Gene">Gene</a></li>
+			<li role="presentation" class="nav-item"><a data-toggle="tab" href="#Drug" >Drug</a></li>
+		</ul> -->
+		
+		<!-- <div name="tab-content"> -->
+			
+			<!-- <div id="Gene" class="tab-pane fade in active" role="tabpanel"> -->
+			<div class="reports-section">
+				<h1 style="text-transform:none; text-align: left; font-size: 25px;">Genes</h1>
+				<p>Ranked genes that are mentioned in COVID-19 publications.</p>
+			
+				<table style="padding-left:80px; padding-right:100px; width:600px" cellspacing="10">
+					<thead>
+						<tr>
+							<td>Genes</td>
+							<td style="font-size:10px;color:grey">first 10 out of </td>
+							<td>Publications</td>
+						</tr>
+						<tr ng-repeat-start="gene in geneList">
+							<td ng-bind="$index+1"></td>
+							<td >{{gene.gene_name}}
+								  <button ng-if="gene.expanded" ng-click="gene.expanded = false">-</button>
+							      <button ng-if="!gene.expanded" ng-click="gene.expanded = true">+</button>
+							</td>
+							<td >{{gene.length}}</td>
+						</tr>
+						<tr ng-if="gene.expanded" ng-repeat-end="" ng-repeat="(title,publication) in gene.publications">
+							<td></td>
+							<td><a href={{publication.url}}>{{title}}</td>
+							<td>{{publication.publish_time}}</td>
+							<td>{{publication.level}}</td>
+						</tr>
+					</thead>
+					<tbody></tbody>
+				</table>
+				<br/>
+			</div>
+			<br/>
+			<br/>
+			<!-- <div id="Drug" class="tab-pane fade active" role="tabpanel"> -->
+			<div class="reports-section">
+				<h1 style="text-transform:none; text-align: left; font-size: 25px;">Drugs</h1>
+				<p>Ranked drugs that are mentioned in COVID-19 publications.</p>
+				
+				<table style="padding-left:80px; padding-right:100px; width:600px" cellspacing="10">
+					<thead>
+						<tr>
+							<td>Drugs</td>
+							<td style="font-size:10px;color:grey">first 10 out of </td>
+							<td>Publications</td>
+						</tr>
+						<tr ng-repeat-start="drug in drugList">
+							<td ng-bind="$index+1"></td>
+							<td>{{drug.drug_name}}
+								<!-- <a ui-sref="app.detail({id: ticket.requestId})" class="btn btn-transparent btn-xs" tooltip-placement="top" tooltip="Edit"><i class="fa fa-pencil"></i></a> -->
+							    <!--    <a  class="btn btn-transparent btn-xs tooltips" tooltip-placement="top" tooltip="Expand" ng-click="toggleDetail($index);lastComment(ticket.requestId)"><i class="fa"  >+/-</i></a>-->
+							      <button ng-if="drug.expanded" ng-click="drug.expanded = false">-</button>
+							      <button ng-if="!drug.expanded" ng-click="drug.expanded = true">+</button>
+						     </td>
+							<td>{{drug.length}}</td>
+						</tr>
+						<tr ng-if="drug.expanded" ng-repeat-end="" ng-repeat="(title,publication) in drug.publications">
+							<td></td>
+							<td><a href={{publication.url}}>{{title}}</td>
+							<td>{{publication.publish_time}}</td>
+							<td>{{publication.level}}</td>
+						</tr>
+						<!-- <tr id="hidden_row" ng-repeat="(key, value) in drugDict">
+							<td>{{getInfoDict[value].title}}</td>
+						</tr> -->
+					</thead>
+					<tbody></tbody>
+				</table>
+				<br/>
+				<br/>
+			</div>
+			<br/>
+			<br/>
+			<!-- </div> -->
+			<!-- <div ng-controller="reports-charts-controller" class="reports-section">
+				<h1 style="text-transform:none; text-align: left; font-size: 25px;">Topics</h1>
+				<p>The first bar chart shows the topics numbers ranking in our publication dataset. The second one shows the topics which are popular among the users.</p>
+				<canvas id="barChart" height="400" width="600" style="margin:50px"> Your browser doesn't support HTML5 canvas. </canvas>
+			</div> -->
+		</div>
+	</div>
+</div>
+<style>
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  width: auto !important;
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+</style>

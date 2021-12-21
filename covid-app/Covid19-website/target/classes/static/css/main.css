@@ -5,6 +5,7 @@
 .navbar-custom .navbar-text {
             color: green;
         }
+
 .head-nav-ul {
   background-color:transparent;
   width: 1100px;
@@ -71,7 +72,7 @@
   display:flex;
   align-items:center; 
   justify-content:center;
-  width: 1280px;
+  width: 1180px;
   height: 640px;
   background-image: url("../img/Covid9.gif");
   background-size: cover;
@@ -144,4 +145,5 @@
 	width: 80%; 
 	float: center;
 	margin: auto;
+	margin-bottom: 30px;
 }

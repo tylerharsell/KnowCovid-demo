@@ -1,14 +1,27 @@
 app.controller('reports-controller',function($scope,$location, mainService, $routeParams,recSystemService){
 	
 	$scope.getGeneDict = function(){
+
 		mainService.callPostRestAPI("reports/getGeneDict/").then(function (data) {
 			console.log(data);
 			$scope.geneDict = data;
+
 		});
 		mainService.callPostRestAPI("reports/getGeneLenDict/").then(function (data) {
 			console.log(data);
 			$scope.geneLenDict = data;
+
 		});
+		
+		mainService.callPostRestAPI("reports/getGeneAllDict/").then(function (data) {
+			console.log(data);
+			var dict = data;
+			$scope.geneList = [];
+			for(var key in dict){
+				$scope.geneList.push(dict[key]);
+			}
+		});
+		
 	}
 	
 	$scope.getDrugDict = function(){
@@ -20,10 +33,29 @@ app.controller('reports-controller',function($scope,$location, mainService, $rou
 			console.log(data);
 			$scope.drugLenDict = data;
 		});
+		mainService.callPostRestAPI("reports/getDrugAllDict/").then(function (data) {
+			console.log(data);
+			var dict = data;
+			$scope.drugList = [];
+			for(var key in dict){
+				$scope.drugList.push(dict[key]);
+			}
+		});
 	}
+	
+	$scope.getInfoDict = function(){
+		mainService.callPostRestAPI("reports/getInfoJson/").then(function (data) {
+			console.log(data);
+			$scope.infoDict = data;
+		});
+	}
+
 	
 	$scope.getGeneDict();
 	$scope.getDrugDict();
+	$scope.getInfoDict();
+
+	
 });
 app.controller('reports-charts-controller',function($scope,$location, mainService, $routeParams,recSystemService){
 

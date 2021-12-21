@@ -47,9 +47,17 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		})
 		.state("/reports",{
 			url: "/reports",
-			templateUrl : "view/rec_output/reports.html"
+			templateUrl : "view/rec_output/reports_all.html"
 		})
-		.state("filter_page", {
+		.state("reports.gene",{
+			url: "/gene",
+			templateUrl : "view/rec_output/reports-gene.html"
+		})
+		.state("reports.drug",{
+			url: "/drug",
+			templateUrl : "view/rec_output/reports-drug.html"
+		})
+		.state("/filter_page", {
 			url: "/filter_page",
 			templateUrl: "view/rec_output/Topic-Model_output_new.html"
 		})

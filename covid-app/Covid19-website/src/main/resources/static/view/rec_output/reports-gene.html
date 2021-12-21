@@ -1,0 +1,47 @@
+<div class="row " ng-controller="reports-controller">
+		<!-- <div id="Gene" class="tab-pane fade in active reports-content" role="tabpanel"> -->
+		<div class="reports-section">
+			<h1 style="text-transform:none; text-align: left; font-size: 25px;">Genes</h1>
+			<p>Ranked genes that are mentioned in COVID-19 publications.</p>
+		
+			<table style="padding-left:80px; padding-right:100px; width:600px" cellspacing="10">
+				<thead>
+					<tr>
+						<td>Genes</td>
+						<td style="font-size:10px;color:grey">first 10 out of </td>
+						<td>Publications</td>
+					</tr>
+					<tr ng-repeat="(key, value) in geneLenDict">
+						<td ng-bind="$index+1"></td>
+						<td ui-sref="app.detail({id: ticket.requestId})">{{key}}
+						      <a ui-sref="app.detail({id: ticket.requestId})" class="btn btn-transparent btn-xs" tooltip-placement="top" tooltip="Edit"><i class="fa fa-pencil"></i></a>
+						    <!--    <a  class="btn btn-transparent btn-xs tooltips" tooltip-placement="top" tooltip="Expand" ng-click="toggleDetail($index);lastComment(ticket.requestId)"><i class="fa"  >+/-</i></a>-->
+						      <button ng-if="ticket.expanded" ng-click="ticket.expanded = false">-</button>
+						      <button ng-if="!ticket.expanded" ng-click="ticket.expanded = true">+</button>
+						</td>
+						<td >{{value}}</td>
+					</tr>
+					<tr ng-if="ticket.expanded" ng-repeat-end="" >
+          					 <td colspan="8" >Test</td> 
+					</tr>
+					
+				</thead>
+				<tbody></tbody>
+			</table>
+			<br/>
+			<br/>
+		</div>
+</div>
+<style>
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  width: auto !important;
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+</style>
