@@ -3,10 +3,6 @@ app.service('mainService', function($http, $q, $location, $window) {
 	//local
     //var serverURL = "http://localhost:9300/Covid-19/";
     var serverURL = "http://54.82.20.123:9090/Covid-19/";
-
-    //server
-    //var serverURL = "http://35.223.93.141:8080/KnowCOVID19/";
-
     
 	return {
 	   callPostRestAPI : function(url, data) {
